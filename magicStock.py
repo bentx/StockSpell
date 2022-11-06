@@ -43,9 +43,12 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 day9=df.at[index+9, 'close']
                 day10=df.at[index+10, 'close']
 
-                testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(df.at[index-1, 'MA200'],df.at[index-1, 'MA100'],row['MA200'],row['MA100']),index+1])
-                testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA50'],row['MA100'],row['MA50']),index+1])
-                testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
+                testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA200'],row['MA100'],row['MA200']),index+1])
+                testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(df.at[index-1, 'MA50'],df.at[index-1, 'MA100'],row['MA50'],row['MA100']),index+1])
+                testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA20'],df.at[index-1, 'MA50'],row['MA20'],row['MA50']),index+1])
+                testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA20'],df.at[index-1, 'MA100'],row['MA20'],row['MA100']),index+1])
+                testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA20'],df.at[index-1, 'MA100'],row['MA20'],row['MA100']),index+1])
+                testResult.append(["MA200VS50",secretIngredient.movingAverageFormula(df.at[index-1, 'MA50'],df.at[index-1, 'MA200'],row['MA50'],row['MA200']),index+1])
 
                 for result in testResult:
                     if result[1]:
