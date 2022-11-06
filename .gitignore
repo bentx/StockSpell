@@ -1,1 +1,4 @@
 *.pkl
+Results/*.csv
+Results/details/*.csv
+Results/StockWiseStratagy/*.csv
