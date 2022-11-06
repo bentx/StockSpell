@@ -82,37 +82,38 @@ def calcWinWithPercentage(stratagy,overall,percentage):
         totalAmount=totalAmount+10000
         #print("######################################")
         for i in range(6,15):
+            currentAmount=10000+((10000/result[5])*result[i])
             #print("initial"+str(result[i]))
             if result[i]>0 and proceed:           
                 if i==14:
                     #print(result[0]+"finalLoop"+str(result[i]))
-                    winAmount=winAmount+10000+((10000/result[5])*result[i])
+                    winAmount=winAmount+currentAmount
                     #print(result[0]+"finalLoop@#################################"+str(winAmount))
 
                 else:
                     current=stockFormula.percentageCalc(result[5],result[i]+result[5])             
-                    if current>percentage:
+                    if currentAmount-10000>100:
                         win=win+1
                         #print(result[0]+"possitive_Win"+str(result[i]))
-                        winAmount=winAmount+10000+((10000/result[5])*result[i])
+                        winAmount=winAmount+currentAmount
                         #print(result[0]+"win_current_End@#################################"+str(winAmount))
 
                         proceed=False
                     elif previous>current:
                         #print(result[0]+"negative_current"+str(result[i]))
-                        winAmount=winAmount+10000+((10000/result[5])*result[i])
+                        winAmount=winAmount+currentAmount
                         #print(result[0]+"negative_current_End@#################################"+str(winAmount))
                         proceed=False
                     previous=current
             else:
                 if i==14 and  proceed:
                     #print(result[0]+"finalLoop_"+str(result[i]))
-                    winAmount=winAmount+10000+((10000/result[5])*result[i-1])
+                    winAmount=winAmount+currentAmount
                     #print(result[0]+"finalLoop_@#################################"+str(winAmount))
 
                 elif  proceed:
                     #print(result[0]+"negative_val"+str(result[i]))
-                    winAmount=winAmount+10000+((10000/result[5])*result[i])
+                    winAmount=winAmount+currentAmount
                     #print(result[0]+"negative_val@#################################"+str(winAmount))
 
                 break

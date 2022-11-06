@@ -30,7 +30,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
      overall={}
      for index, row in df.iterrows():
         if index > 200 :
-            if(index<df.shape[0]-11 ):
+            if(index>df.shape[0]-40 and index<df.shape[0]-11 ):
                 testResult=[]
                 day1=df.at[index+1, 'close']
                 day2=df.at[index+2, 'close']
@@ -46,6 +46,8 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(df.at[index-1, 'MA200'],df.at[index-1, 'MA100'],row['MA200'],row['MA100']),index+1])
                 testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA50'],row['MA100'],row['MA50']),index+1])
                 testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
+                testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA20'],row['MA100'],row['MA20']),index+1])
+                testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
 
                 for result in testResult:
                     if result[1]:
