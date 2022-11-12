@@ -30,7 +30,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
      overall={}
      for index, row in df.iterrows():
         if index > 200 :
-            if(index>df.shape[0]-40 and index<df.shape[0]-11 ):
+            if( index<df.shape[0]-11 ):
                 testResult=[]
                 day1=df.at[index+1, 'close']
                 day2=df.at[index+2, 'close']
@@ -48,11 +48,22 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
                 testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA20'],row['MA100'],row['MA20']),index+1])
                 testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
+                testResult.append(["OPG",secretIngredient.OpenPercentageGap(df.at[index-1, 'close'],df.at[index, 'open'],df.at[index, 'av']),index])
+                testResult.append(["1WA1",secretIngredient.WA1Stratagy1(ha_dfList[idx],index),index+1])
+                testResult.append(["1WA2",secretIngredient.WA1Stratagy2(ha_dfList[idx],index),index+1])
 
                 for result in testResult:
                     if result[1]:
                         close=df.at[result[2], "open"]
-                        dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
+                        if result[0] =="OPG":
+                            open=df.at[result[2], "open"]
+                            high=df.at[result[2], "high"]
+                            close=df.at[result[2], "close"]
+
+                            dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,float(close)-float(open),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),open])
+                        else:
+
+                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
                         #print([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
                         if overall.get(result[0]):
                             overall[result[0]].append([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
@@ -71,7 +82,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
 def process(stockCODE,stock,stockID):
     #use this if money control didnt work | responseday = requests.get("https://api.upstox.com/historical/NSE_EQ/"+stockID+"/day?timestamp=")
     #data =responseday.json()
-    timeLine=[["15",23],["30",45],["60",90],["1D",365]]
+    timeLine=[["1D",365]]
     if not os.path.isfile("./DFState/data"+stockCODE+timeLine[0][0]+".pkl"):
         dataList=dataUtility.getStockData(stockCODE,timeLine)
         [dfList,ha_dfList]=dataUtility.preProcess(dataList,stockCODE)
@@ -91,7 +102,8 @@ def WatchStockMarket():
     msg={}
     
     for row in csv_reader:
-       try:
+        try:
+
             print(row[1])
             output=process(row[0],row[1],row[2])
             for idx in output:
@@ -104,8 +116,9 @@ def WatchStockMarket():
                         msg[str(idx)+stratagies]=[]
                         msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
             line_count+= 1
-       except Exception as e:
+        except Exception as e:
              print("Oops!", e, "occurred.")
+      
 
     for x in msg:
                 total=0

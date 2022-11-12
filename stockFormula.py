@@ -74,7 +74,10 @@ def MovingAverage(df):
     df['MA14'] = df['close'].rolling(14).mean()
     df['MA5'] = df['close'].rolling(5).mean()
     return df
-     
+
+def AverageVolume(df) :
+    df['av']  = df['volume'].rolling(30).mean()
+    return df
        
 def hikendataconvertion(data):
     hikendata =  data.copy()
@@ -99,6 +102,12 @@ def convertToDF(data):
 def VWMA(df):
     df['vwma'] = df.ta.vwma(length = 20,fillna=True)
     return df
+
+def VA(df,type):
+    if type=="1WVA":
+         df['1WVA'] = df['volume'].rolling(5).mean()
+    return df
+        
 
     
 def MACD(df):
@@ -141,6 +150,8 @@ def heikin_ashi(df):
     
     heikin_ashi_df['low'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['low']).min(axis=1)
     heikin_ashi_df['volume']=df['volume']
+    heikin_ashi_df['date']=df['date']
+
     return heikin_ashi_df
 
 

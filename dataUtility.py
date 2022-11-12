@@ -46,18 +46,24 @@ def preProcess(dataList,stockCode):
         df=stockFormula.convertToDF(data[1])
         df=stockFormula.MACD(df)
         df=stockFormula.VWMA(df)
+        df=stockFormula.VA(df,"1WVA")
         df=stockFormula.bollinger_bands(df)
         df=stockFormula.ADX(df)
         df=stockFormula.MovingAverage(df)
+        df=stockFormula.AverageVolume(df)
+
         df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
 
         #hiken
         ha_df=stockFormula.heikin_ashi(df.copy())
         ha_df=stockFormula.MACD(ha_df)
         ha_df=stockFormula.VWMA(ha_df)
+        df=stockFormula.VA(ha_df,"1WVA")
         ha_df=stockFormula.bollinger_bands(ha_df)
         ha_df=stockFormula.ADX(ha_df)
         ha_df=stockFormula.MovingAverage(ha_df)
+        ha_df=stockFormula.AverageVolume(ha_df)
+
         df.to_pickle("./DFState/HAdata"+stockCode+data[0]+".pkl")
         dfList.append(df.copy())
         ha_dfList.append(ha_df.copy())
@@ -118,3 +124,19 @@ def calcWinWithPercentage(stratagy,overall,percentage):
 
                 break
     return [total,win,totalAmount,winAmount]
+
+def findCandleType(df,index):
+    if ((df.loc[:, 'open'][index]<df.loc[:, 'close'][index])and(df.loc[:, 'open'][index]==df.loc[:, 'low'][index]) ):
+        return "G"
+    elif ((df.loc[:, 'open'][index]>df.loc[:, 'close'][index])and(df.loc[:, 'open'][index]==df.loc[:, 'high'][index]) ):
+        return "R"
+    elif ((df.loc[:, 'open'][index]<df.loc[:, 'close'][index]) ):
+        return "G1"
+    else:
+        return "R1"  
+
+def isTouchLow(df,index):
+    if((df.loc[:, 'close'][index]<df.loc[:, 'down'][index])):
+        return True
+    else:
+        return False
