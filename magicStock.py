@@ -19,7 +19,19 @@ import talib
 import pandas_ta as ta
 import dataUtility
 import secretIngredient
+import logging
 import os.path
+from logging.handlers import RotatingFileHandler
+
+
+logging.basicConfig(filename="application.log",
+                    format='%(message)s',
+                    filemode='w')
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+handler = RotatingFileHandler('log/my_log.log', maxBytes=200000, backupCount=10)
+logger.addHandler(handler)
+
 
 IST = pytz.timezone('Asia/Kolkata')
 
@@ -30,31 +42,42 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
      overall={}
      for index, row in df.iterrows():
         if index > 200 :
-            if( index<df.shape[0]-11 ):
+                
                 testResult=[]
-                day1=df.at[index+1, 'close']
-                day2=df.at[index+2, 'close']
-                day3=df.at[index+3, 'close']
-                day4=df.at[index+4, 'close']
-                day5=df.at[index+5, 'close']
-                day6=df.at[index+6, 'close']
-                day7=df.at[index+7, 'close']
-                day8=df.at[index+8, 'close']
-                day9=df.at[index+9, 'close']
-                day10=df.at[index+10, 'close']
+                if( index<df.shape[0]-11 ):
+                    day1=df.at[index+1, 'close']
+                    day2=df.at[index+2, 'close']
+                    day3=df.at[index+3, 'close']
+                    day4=df.at[index+4, 'close']
+                    day5=df.at[index+5, 'close']
+                    day6=df.at[index+6, 'close']
+                    day7=df.at[index+7, 'close']
+                    day8=df.at[index+8, 'close']
+                    day9=df.at[index+9, 'close']
+                    day10=df.at[index+10, 'close']
 
-                testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(df.at[index-1, 'MA200'],df.at[index-1, 'MA100'],row['MA200'],row['MA100']),index+1])
-                testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA50'],row['MA100'],row['MA50']),index+1])
-                testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
-                testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA100'],df.at[index-1, 'MA20'],row['MA100'],row['MA20']),index+1])
-                testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
+                testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA100'],row['MA200'],row['MA100']),index+1])
+                testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA100'],df.at[index-1, 'MA50'],row['MA100'],row['MA50']),index+1])
+                testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
+                testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA100'],df.at[index-1, 'MA20'],row['MA100'],row['MA20']),index+1])
+                testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
                 testResult.append(["OPG",secretIngredient.OpenPercentageGap(df.at[index-1, 'close'],df.at[index, 'open'],df.at[index, 'av']),index])
                 testResult.append(["1WA1",secretIngredient.WA1Stratagy1(ha_dfList[idx],index),index+1])
                 testResult.append(["1WA2",secretIngredient.WA1Stratagy2(ha_dfList[idx],index),index+1])
+                testResult.append(["bodyTouch200",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA200'),index+1])
+                testResult.append(["bodyTouch100",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA100'),index+1])
+                testResult.append(["wigTouch200",secretIngredient.wigTouch(ha_dfList[idx],index,'MA200'),index+1])
+                testResult.append(["wigTouch100",secretIngredient.wigTouch(ha_dfList[idx],index,'MA100'),index+1])
+
+
+
 
                 for result in testResult:
                     if result[1]:
-                        close=df.at[result[2], "open"]
+                      close=df.at[result[2], "open"]
+                      if( index>df.shape[0]-11 ):
+                             dataUtility.storeInFile("./Results/today/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,df.at[result[2], '1WVA'],df.at[result[2], 'adx'],df.at[result[2], 'rsi']])
+                      else:
                         if result[0] =="OPG":
                             open=df.at[result[2], "open"]
                             high=df.at[result[2], "high"]
@@ -62,8 +85,10 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
 
                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,float(close)-float(open),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),open])
                         else:
+                             logger.info(str(datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).isoformat())+"|"+result[0]+"|"+stock+"|"+stockCODE+"|"+str(df.at[result[2], '1WVA'])+"|"+str(df.at[result[2], 'up'])+"|"+str(df.at[result[2], 'down'])+"|"+str(df.at[result[2], 'middle'])+"|"+str(df.at[result[2], 'adx'])+"|"+str(df.at[result[2], 'rsi'])+"|"+str(float(day1)-float(close))+"|"+str(float(day2)-float(close))+"|"+str(float(day3)-float(close))+"|"+str(float(day4)-float(close))+"|"+str(float(day5)-float(close))+"|"+str(float(day6)-float(close))+"|"+str(float(day7)-float(close))+"|"+str(float(day8)-float(close))+"|"+str(float(day9)-float(close))+"|"+str(float(day10)-float(close)))
+                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,df.at[result[2], '1WVA'],df.at[result[2], 'adx'],df.at[result[2], 'rsi'],float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
 
-                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),stock,stockCODE,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
+                        
                         #print([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
                         if overall.get(result[0]):
                             overall[result[0]].append([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%d/%m/%Y"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])

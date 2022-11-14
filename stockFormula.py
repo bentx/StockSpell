@@ -12,51 +12,12 @@ import talib
 import pandas_ta as ta
 
 
-def RSI(list,index,divident):
-    data = list[:index+1]
-    data = data[-divident-1:]
-    gain=[]
-    loss=[]
-    gainsum=0.00
-    losssum=0.00
-    close=[]
-    ardata=data[0].split(",")
-    close.append(ardata[4])
-    for i in range(1,divident+1):
-        prev=data[i-1].split(",")
-        arrdata=data[i].split(",")
-        val=(float(arrdata[4]))-(float(prev[4]))
-        close.append(arrdata[4])
-        if(val>=0):
-            gain.append(val)
-            loss.append(0.00)
-        else:
-            gain.append(0.00)
-            loss.append(val*-1)
-    for i in gain:
-        gainsum+=i
-    for i in loss:
-        losssum+=i
-    prev=data[-2].split(",")
-    arrdata=data[-1].split(",")
-    curr=(float(arrdata[4]))-(float(prev[4]))
-    gs=0.0
-    ls=0.0
-    if(curr>0):
-        gs=curr
-    else:
-        ls=curr*-1
-    g=(((gainsum/divident)*(divident-1))+gs)/divident
-    l=(((abs(losssum)/divident)*(divident-1))+abs(ls))/divident
+def RSI(df):
+    close = df['close']
+    rsi = talib.RSI(close, timeperiod=14)
+    df['rsi'] = rsi
+    return df
 
-    if l==0:
-        rs=1
-    elif g==0:
-        rs=1
-    else:
-        rs=g/l
-
-    return (100-(100/(1+rs)))
      
 def RSIMovingAverage(list,index,divident):
     data = list[:index+1]
