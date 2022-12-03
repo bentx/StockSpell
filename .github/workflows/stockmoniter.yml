@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: 3.9 #install the python needed
           
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+        with:
+         path: "requirements.txt"
+          
       - name: execute py script # run the run.py to get the latest data
         run: |
           python magicStock.py
