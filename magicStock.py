@@ -27,13 +27,13 @@ import os
 
 
 
-logging.basicConfig(filename="application.log",
-                    format='%(message)s',
-                    filemode='w')
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-handler = RotatingFileHandler('log/my_log.log', maxBytes=200000, backupCount=10)
-logger.addHandler(handler)
+# logging.basicConfig(filename="application.log",
+#                     format='%(message)s',
+#                     filemode='w')
+# logger = logging.getLogger()
+# logger.setLevel(logging.INFO)
+# handler = RotatingFileHandler('log/my_log.log', maxBytes=200000, backupCount=10)
+# logger.addHandler(handler)
 
 
 IST = pytz.timezone('Asia/Kolkata')
@@ -288,8 +288,8 @@ def resetDirectory():
         for file in file_list:
             os.remove(f'{dir}{file}')
 
-#resetDirectory()
-#WatchStockMarket()
-#analyzeResult()
+resetDirectory()
+WatchStockMarket()
+analyzeResult()
 updateResult()
-#moniterResult()
+moniterResult()
