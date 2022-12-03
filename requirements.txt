@@ -8,3 +8,4 @@ pymongo
 pymongo[srv]
 pandas
 pandas-ta
+ta-lib
