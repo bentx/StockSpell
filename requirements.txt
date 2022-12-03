@@ -8,4 +8,3 @@ pymongo
 pymongo[srv]
 pandas
 pandas-ta
-ta-lib==0.4.17

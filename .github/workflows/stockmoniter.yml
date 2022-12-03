@@ -1,37 +1,43 @@
 name: Experiment
-on: 
+on:
   schedule:
-  - cron: '*/5 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
+    env:
       CI_COMMIT_MESSAGE: CI Run
       CI_COMMIT_AUTHOR: CI
     steps:
       - name: checkout repo
         uses: actions/checkout@v3 # checkout the repository content to github runner.
-        
+
       - name: setup python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9 #install the python needed
-      
+
       - name: Create annotation for build error
         run: |
-            echo "list file"
-            ls -lrt
-          
+          echo "list file"
+          ls -lrt
+          wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+          tar xvfz ta-lib-0.4.0-src.tar.gz
+          cd ta-lib
+          ./configure
+          make
+          sudo make install
+
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
         with:
-         path: "requirements.txt"
-          
+          path: 'requirements.txt'
+
       - name: execute py script # run the run.py to get the latest data
         run: |
           python magicStock.py
-          
+
       - name: GIT Commit Result
         run: |
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
