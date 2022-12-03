@@ -1,0 +1,30 @@
+name: Continuous Integration
+on:
+ schedule:
+    # Runs "at minute 55 past every hour" (see https://crontab.guru)
+    - cron: '30 14 * * 1-6'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: 
+      CI_COMMIT_MESSAGE: CI Run
+      CI_COMMIT_AUTHOR: CI
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3 # checkout the repository content to github runner.
+        
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9 #install the python needed
+          
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python magicStock.py
+          
+      - name: GIT Commit Result
+        run: |
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "bensonxaviertx@gmail.com"
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+          git push
