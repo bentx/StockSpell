@@ -1,7 +1,7 @@
 name: StockMonitor
 on:
   schedule:
-    - cron: '30 12 * * 1-5'
+    - cron: '*/5 * * * *'
 
 jobs:
   StockMonitor:
@@ -43,6 +43,5 @@ jobs:
         run: |
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "bensonxaviertx@gmail.com"
-          git pull
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push
