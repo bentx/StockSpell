@@ -35,9 +35,9 @@ jobs:
         with:
           path: 'requirements.txt'
 
-      # - name: execute py script # run the run.py to get the latest data
-      #   run: |
-      #     python magicStock.py
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python magicStock.py
 
       - name: GIT Commit Result
         run: |
