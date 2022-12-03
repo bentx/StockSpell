@@ -1,0 +1,8 @@
+requests
+datetime
+pydantic
+pytz
+httptools
+pushbullet.py==0.9.1
+pymongo
+pymongo[srv]
