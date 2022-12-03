@@ -36,6 +36,12 @@ jobs:
 
       - name: execute py script # run the run.py to get the latest data
         run: |
+          wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+          tar xvfz ta-lib-0.4.0-src.tar.gz
+          cd ta-lib
+          ./configure
+          make
+          sudo make install
           python magicStock.py
 
       - name: GIT Commit Result
