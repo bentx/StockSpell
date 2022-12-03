@@ -275,13 +275,15 @@ def updateResult():
 
             except Exception as e:
                 print("Oops!", e, "occurred.")
+
 def resetDirectory():
     dirList=["./Results/analysis/","./Results/details/","./Results/StockWiseStratagy/","./Results/today/"]
     for dir in dirList:
         print(f'removing {dir}.......')
-        file_list = os.listdir(dir) 
-        for file in file_list:
-            os.remove(f'{dir}{file}')
+        if (os.path.exists(dir)):
+            file_list = os.listdir(dir) 
+            for file in file_list:
+                os.remove(f'{dir}{file}')
 
 resetDirectory()
 WatchStockMarket()

@@ -1,10 +1,10 @@
-name: Experiment
+name: StockMonitor
 on:
   schedule:
     - cron: '*/5 * * * *'
 
 jobs:
-  build:
+  SrockMonitor:
     runs-on: ubuntu-latest
     env:
       CI_COMMIT_MESSAGE: CI Run
@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: 3.9 #install the python needed
 
-      - name: Create annotation for build error
+      - name: setup TALIB
         run: |
           echo "list file"
           ls -lrt
