@@ -35,13 +35,14 @@ jobs:
         with:
           path: 'requirements.txt'
 
-      - name: execute py script # run the run.py to get the latest data
-        run: |
-          python magicStock.py
+      # - name: execute py script # run the run.py to get the latest data
+      #   run: |
+      #     python magicStock.py
 
       - name: GIT Commit Result
         run: |
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "bensonxaviertx@gmail.com"
+          git pull
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push
