@@ -22,11 +22,13 @@ import os.path
 def getStockData(stockCode,timeList):
     data=[]
     for timeLine in timeList:
+        #todate = datetime.today()-timedelta(days=365)
         todate = datetime.today()
         fromdate = todate - timedelta(days=timeLine[1])
         response = requests.get("https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol="+stockCode+"&resolution="+timeLine[0]+"&from="+str(int (time.mktime(fromdate.timetuple())))+"&to="+str(int (time.mktime(todate.timetuple()))))
         data.append([timeLine[0],response.json()])
     return data
+    
 def getPreLoadedData(timeLine,stockCode):
     print(" processing from state")
     dfList=[]
@@ -53,7 +55,7 @@ def preProcess(dataList,stockCode):
         df=stockFormula.MovingAverage(df)
         df=stockFormula.AverageVolume(df)
 
-        df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
+        #df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
 
         #hiken
         ha_df=stockFormula.heikin_ashi(df.copy())
@@ -66,7 +68,7 @@ def preProcess(dataList,stockCode):
         ha_df=stockFormula.MovingAverage(ha_df)
         ha_df=stockFormula.AverageVolume(ha_df)
 
-        df.to_pickle("./DFState/HAdata"+stockCode+data[0]+".pkl")
+        #df.to_pickle("./DFState/HAdata"+stockCode+data[0]+".pkl")
         dfList.append(df.copy())
         ha_dfList.append(ha_df.copy())
         
@@ -142,3 +144,32 @@ def isTouchLow(df,index):
         return True
     else:
         return False
+
+def calcRealProfit(result,visited):
+     count =(10000/float(result[6]))
+     for i in range(7,16):
+        if(float(result[i])*count>100):
+            return True
+        else:
+            date=datetime.strptime(result[0], '%b %d %Y %I:%M%p')
+            date=date+timedelta(days=i-5)
+            visited.append(date.strftime("%b %d %Y %I:%M%p"))
+     return False
+
+def calcRealProfitInIsolation(result,stockVisited):
+     count =(10000/float(result[6]))
+     for i in range(7,16):
+        if(float(result[i])*count>100):
+            return True
+        else:
+            date=datetime.strptime(result[0], '%b %d %Y %I:%M%p')
+            date=date+timedelta(days=i-5)
+            stockVisited[result[2]].append(date.strftime("%b %d %Y %I:%M%p"))
+     return False
+
+def findRange(rangeList,val):
+    for i in rangeList:
+        if float(val)>float(i[0]) and float(val)<float(i[1]):
+            return str(i[0])+"-"+str(i[1])
+    return "null"    
+    

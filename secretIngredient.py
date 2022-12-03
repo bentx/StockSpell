@@ -49,5 +49,15 @@ def wigTouch(ha_df,currIndex,ma):
         return True
      return False
 
+def TopGainer(df,currIndex,percentage):
+    if float(df.at[currIndex-1, 'close']) <float(df.at[currIndex, 'close']):
+        percent=stockFormula.percentageCalc(float(df.at[currIndex-1, 'close']) ,float(df.at[currIndex, 'close']))
+        if(percent>percentage and percent<percentage+1):
+            return True     
+    return False
 
-
+def RSAADX(df,currentIndex):
+    if int(df.at[currentIndex, 'rsi2']) <25 and int(df.at[currentIndex, 'adx'])>20 :
+        return True
+    return False
+    

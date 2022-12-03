@@ -15,7 +15,9 @@ import pandas_ta as ta
 def RSI(df):
     close = df['close']
     rsi = talib.RSI(close, timeperiod=14)
+    rsi2 = talib.RSI(close, timeperiod=14)
     df['rsi'] = rsi
+    df['rsi2'] = rsi2
     return df
 
      
@@ -132,3 +134,7 @@ def percentageCalc(num1,num2):
     y=num1+num2
     z=x/y
     return z*100
+
+def findPercentage(num1,num2):
+    return int(num1)/int(num2)*100
+
