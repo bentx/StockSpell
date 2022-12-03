@@ -18,17 +18,17 @@ jobs:
         with:
           python-version: 3.9 #install the python needed
           cache: 'pip'
-      # Add this when TALIB FAILS
-      # - name: setup TALIB
-      #   run: |
-      #     echo "list file"
-      #     ls -lrt
-      #     wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
-      #     tar xvfz ta-lib-0.4.0-src.tar.gz
-      #     cd ta-lib
-      #     ./configure  --prefix="/usr"
-      #     make
-      #     sudo make install
+
+      - name: setup TALIB
+        run: |
+          echo "list file"
+          ls -lrt
+          wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+          tar xvfz ta-lib-0.4.0-src.tar.gz
+          cd ta-lib
+          ./configure  --prefix="/usr"
+          make
+          sudo make install
 
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
