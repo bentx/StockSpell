@@ -17,9 +17,7 @@ import pandas_ta as ta
 import dataUtility
 import secretIngredient
 import stockFormula
-import logging
 import os.path
-from logging.handlers import RotatingFileHandler
 import os
 
 

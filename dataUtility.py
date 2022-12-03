@@ -6,13 +6,10 @@ import time
 import pytz
 from pytz import timezone
 from pydantic import BaseModel
-from fastapi import FastAPI
-import uvicorn
 import pymongo
 from pymongo import MongoClient
 import requests
 from pushbullet import Pushbullet
-from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from csv import writer
 import stockFormula
