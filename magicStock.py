@@ -136,16 +136,16 @@ def WatchStockMarket():
     for row in csv_reader:
         try:
             print(row[1])
-            output=process(row[0],row[1],row[2])
-            for idx in output:
-                for stratagies in output[idx]:
-                    dataUtility.storeInFile("./Results/StockWiseStratagy/OverALLdata.csv",[row[0],row[1],str(idx)+stratagies,output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3],str(output[idx][stratagies][3]-output[idx][stratagies][2])])
+            process(row[0],row[1],row[2])
+            # for idx in output:
+            #     for stratagies in output[idx]:
+            #         dataUtility.storeInFile("./Results/StockWiseStratagy/OverALLdata.csv",[row[0],row[1],str(idx)+stratagies,output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3],str(output[idx][stratagies][3]-output[idx][stratagies][2])])
 
-                    if msg.get(str(idx)+stratagies):
-                        msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
-                    else:
-                        msg[str(idx)+stratagies]=[]
-                        msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
+            #         if msg.get(str(idx)+stratagies):
+            #             msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
+            #         else:
+            #             msg[str(idx)+stratagies]=[]
+            #             msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
             line_count+= 1
         except Exception as e:
              print("Oops!", e, "occurred.")
@@ -167,7 +167,7 @@ def analyzeResult():
             for wva1 in WVA1:
                 for file in file_list:
                     with open(f'./Results/details/{file}') as csv_file:
-
+                        print(f'Processing {file}')
                         csv_reader = csv.reader(csv_file, delimiter=',')
                         line_count = 0
                         visited=[]
@@ -202,15 +202,19 @@ def analyzeResult():
                         if active2!=0:
                             dataUtility.storeInFile("./Results/analysis/"+file,[file,str(wva1[0])+"-"+str(wva1[1]),str(adx[0])+"-"+str(adx[1]),str(rsi[0])+"-"+str(rsi[1]),total2,active2,win2])
 
-                            print(f'file: {file}')
-                            print(f'{wva1}|{adx}|{rsi}total: {total2} active: {active2} win: {win2}')
+                            #print(f'file: {file}')
+                            #print(f'{wva1}|{adx}|{rsi}total: {total2} active: {active2} win: {win2}')
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
 def moniterResult():
+    print(f'++++++++++++++++++++++++++++++++++++++++++++++++++++++++Monitoring Results')
+
     path = "./Results/today/"
     file_list = os.listdir(path) 
     for file in file_list:
              with open(f'./Results/today/{file}') as csv_file:
+                    print(f'Processing {file}')
+
                     csv_reader = csv.reader(csv_file, delimiter=',')
                     for result in csv_reader:
                           key=result[3]+result[4]+result[5]
@@ -224,7 +228,6 @@ def moniterResult():
                                                 progressStatus=False
                                                 for summory in summory_reader:
                                                    if result[2]==summory[2] and summory[8]=="PROGRESS":
-                                                        print("noooooooooooooooooooooo")
                                                         progressStatus=True
                                                         break
                                                 if not progressStatus:
@@ -237,11 +240,14 @@ def moniterResult():
 
 
 def updateResult():
+    print(f'+++++++++++++++++++++++++++++++++++++++++++++++++++updateResult')
 
     path = "./Results/summory/"
     file_list = os.listdir(path) 
     for file in file_list:
         sdf = pd.read_csv(f'./Results/summory/{file}',header = None)
+        print(f'Processing {file}')
+
         for rootindex, row in sdf.iterrows():
             try:
                 if row[8]!="FAIL" and row[8]!="PASS":
@@ -277,7 +283,7 @@ def updateResult():
                 print("Oops!", e, "occurred.")
 
 def resetDirectory():
-    dirList=["./Results/analysis/","./Results/details/","./Results/StockWiseStratagy/","./Results/today/"]
+    dirList=["./Results/analysis/","./Results/details/","./Results/today/"]
     for dir in dirList:
         print(f'removing {dir}.......')
         if (os.path.exists(dir)):
