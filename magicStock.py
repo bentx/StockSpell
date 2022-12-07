@@ -231,9 +231,9 @@ def moniterResult():
                                                         progressStatus=True
                                                         break
                                                 if not progressStatus:
-                                                        dataUtility.storeInFile(f"./Results/summory/{file}",[result[0],result[0],result[2],file,key,analysisResult[4],analysisResult[5],analysisResult[6],"PROGRESS"])
+                                                        dataUtility.storeInFile(f"./Results/summory/{file}",[result[0],result[0],result[2],file,key,analysisResult[4],analysisResult[5],analysisResult[6],"PROGRESS",'0'])
                                         else:
-                                           dataUtility.storeInFile(f"./Results/summory/{file}",[result[0],result[0],result[2],file,key,analysisResult[4],analysisResult[5],analysisResult[6],"PROGRESS"])
+                                           dataUtility.storeInFile(f"./Results/summory/{file}",[result[0],result[0],result[2],file,key,analysisResult[4],analysisResult[5],analysisResult[6],"PROGRESS",'0'])
 
 
 
