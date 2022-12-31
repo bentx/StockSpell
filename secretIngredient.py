@@ -57,4 +57,58 @@ def RSAADX(df,currentIndex):
     if int(df.at[currentIndex, 'rsi2']) <25 and int(df.at[currentIndex, 'adx'])>20 :
         return True
     return False
+
+def findTrend(df , index , length ,correction):
+    HH=df.at[index-length, 'close']
+    CH=df.at[index-length, 'close']
+    LL=df.at[index-length, 'close']
+    CL=df.at[index-length, 'close']
+    HI=0
+    LI=0
+    initialLow=False
+    initialHigh=False
+    PH=df.at[index-length, 'close']
+    PL=df.at[index-length, 'close']
+    trend="UN"
+    for i in range(index-length+1,index+1):
+        if i==index:
+            if df.at[index-length, 'close']>CH:
+                return True
+            return False
+        if(LL>df.at[i, 'close']):
+            trend="D"
+            LL=df.at[i, 'close']
+            CH=df.at[i, 'close']
+        elif(HH<df.at[i, 'close']):
+            trend="U"
+            HH=df.at[i, 'close']
+            CL=df.at[i, 'close']
+        elif(CL>df.at[i, 'close']):
+            if(LI==correction):
+                if initialHigh:
+                    PH=df.at[i-correction, 'close']
+                initialHigh=False
+                CL=df.at[i, 'close']
+                CH=df.at[i, 'close']
+                HI=0
+            else:
+                LI=LI+1
+                initialHigh=True
+
+        elif(CH<df.at[i, 'close']):
+            if(HI==correction):
+                if initialLow:
+                    PL=df.at[i-correction, 'close']
+                initialLow=False
+                CH=df.at[i, 'close']
+                CL=df.at[i, 'close']
+                LI=0
+            else:
+                HI=HI+1
+                initialLow=True
+    return False
+                
+
+
+
     

@@ -72,6 +72,8 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 testResult.append(["TopGainer1",secretIngredient.TopGainer(df,index,1),index+1])
                 testResult.append(["TopGainer2",secretIngredient.TopGainer(df,index,2),index+1])
                 testResult.append(["RSAADX",secretIngredient.RSAADX(df,index),index+1])
+                testResult.append(["linebreak",secretIngredient.findTrend(df,index,30,3),index+1])
+
 
 
 
@@ -292,7 +294,7 @@ def resetDirectory():
                 os.remove(f'{dir}{file}')
 
 resetDirectory()
-WatchStockMarket()
-analyzeResult()
-updateResult()
-moniterResult()
+# WatchStockMarket()
+# analyzeResult()
+# updateResult()
+# moniterResult()
