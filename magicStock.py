@@ -291,7 +291,9 @@ def resetDirectory():
         if (os.path.exists(dir)):
             file_list = os.listdir(dir) 
             for file in file_list:
-                os.remove(f'{dir}{file}')
+                if file != "dummyfile.txt":
+                    print (f'removing...{file}')
+                    os.remove(f'{dir}{file}')
 
 resetDirectory()
 # WatchStockMarket()
