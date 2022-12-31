@@ -287,7 +287,7 @@ def updateResult():
 def resetDirectory():
     dirList=["./Results/analysis/","./Results/details/","./Results/today/"]
     for dir in dirList:
-        print(f'removing {dir}....... new')
+        print(f'removing {dir}.......')
         if (os.path.exists(dir)):
             file_list = os.listdir(dir) 
             for file in file_list:
@@ -296,7 +296,7 @@ def resetDirectory():
                     os.remove(f'{dir}{file}')
 
 resetDirectory()
-# WatchStockMarket()
-# analyzeResult()
-# updateResult()
-# moniterResult()
+WatchStockMarket()
+analyzeResult()
+updateResult()
+moniterResult()

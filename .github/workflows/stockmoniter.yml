@@ -1,7 +1,7 @@
 name: StockMonitor
 on:
   schedule:
-    - cron: '50 11 * * *'
+    - cron: '00 12 * * *'
 
 jobs:
   StockMonitor:
