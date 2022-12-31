@@ -287,7 +287,7 @@ def updateResult():
 def resetDirectory():
     dirList=["./Results/analysis/","./Results/details/","./Results/today/"]
     for dir in dirList:
-        print(f'removing {dir}.......')
+        print(f'removing {dir}....... new')
         if (os.path.exists(dir)):
             file_list = os.listdir(dir) 
             for file in file_list:
