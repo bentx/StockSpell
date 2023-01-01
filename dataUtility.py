@@ -169,4 +169,9 @@ def findRange(rangeList,val):
         if float(val)>float(i[0]) and float(val)<float(i[1]):
             return str(i[0])+"-"+str(i[1])
     return "null"    
-    
+
+def FCTP(df,index):
+    if float(df.at[index, 'close']) > float(df.at[index, 'open']):
+        return "G"
+    else:
+        return "R"  

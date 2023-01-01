@@ -16,6 +16,8 @@ import dataUtility
 import talib
 import pandas_ta as ta
 
+IST = pytz.timezone('Asia/Kolkata')
+
 def movingAverageFormula(ha_df,currIndex,preHigh,preLow,high,low):
     if( float(preHigh)>=float(preLow) and float(high)<=float(low) ):
         
@@ -68,11 +70,13 @@ def findTrend(df , index , length ,correction):
     initialLow=False
     initialHigh=False
     PH=df.at[index-length, 'close']
+    PHD=0
     PL=df.at[index-length, 'close']
     trend="UN"
     for i in range(index-length+1,index+1):
         if i==index:
-            if df.at[index-length, 'close']>CH:
+            if df.at[index-length, 'close']>PH:
+                print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(PHD),IST).strftime("%b %d %Y %I:%M%p"),correction)
                 return True
             return False
         if(LL>df.at[i, 'close']):
@@ -87,6 +91,7 @@ def findTrend(df , index , length ,correction):
             if(LI==correction):
                 if initialHigh:
                     PH=df.at[i-correction, 'close']
+                    PHD=df.at[i-correction, 'date']
                 initialHigh=False
                 CL=df.at[i, 'close']
                 CH=df.at[i, 'close']
@@ -107,7 +112,28 @@ def findTrend(df , index , length ,correction):
                 HI=HI+1
                 initialLow=True
     return False
-                
+
+def trianglePattern(df,index,length,correction):
+    PH=-1
+    PHI=0
+    Pattern="N"
+    for i in range(index-length,index+1):
+        if i==index:
+            if PH!=-1 and  float(df.at[PH, 'high'])<float(df.at[index, 'close']) and  not float(df.at[PH, 'high'])<float(df.at[index-1, 'close']):
+                #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
+                return True
+        if i<index-2:
+            if dataUtility.FCTP(df,i-2)+dataUtility.FCTP(df,i-1)+dataUtility.FCTP(df,i)+dataUtility.FCTP(df,i+1)+dataUtility.FCTP(df,i+2)=="GGRRR" :
+                PH= i-1
+                Pattern=Pattern+"H"
+            if dataUtility.FCTP(df,i-2)+dataUtility.FCTP(df,i-1)+dataUtility.FCTP(df,i)+dataUtility.FCTP(df,i+1)+dataUtility.FCTP(df,i+2)=="RRGGG" :
+                Pattern=Pattern+"L"
+    return False
+
+
+
+
+
 
 
 

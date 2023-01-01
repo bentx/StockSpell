@@ -72,7 +72,8 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 testResult.append(["TopGainer1",secretIngredient.TopGainer(df,index,1),index+1])
                 testResult.append(["TopGainer2",secretIngredient.TopGainer(df,index,2),index+1])
                 testResult.append(["RSAADX",secretIngredient.RSAADX(df,index),index+1])
-                testResult.append(["linebreak",secretIngredient.findTrend(df,index,30,3),index+1])
+                #testResult.append(["linebreak",secretIngredient.findTrend(df,index,120,3),index+1])
+                testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
 
 
 
@@ -294,6 +295,8 @@ def resetDirectory():
                 if file != "dummyfile.txt":
                     print (f'removing...{file}')
                     os.remove(f'{dir}{file}')
+        if(not os.path.exists(dir)):
+            os.mkdir(dir)
 
 resetDirectory()
 WatchStockMarket()
