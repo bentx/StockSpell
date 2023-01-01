@@ -292,9 +292,7 @@ def resetDirectory():
         if (os.path.exists(dir)):
             file_list = os.listdir(dir) 
             for file in file_list:
-                if file != "dummyfile.txt":
-                    print (f'removing...{file}')
-                    os.remove(f'{dir}{file}')
+                os.remove(f'{dir}{file}')
         if(not os.path.exists(dir)):
             os.mkdir(dir)
 
