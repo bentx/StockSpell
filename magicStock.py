@@ -288,12 +288,13 @@ def updateResult():
 def resetDirectory():
     dirList=["./Results/analysis/","./Results/details/","./Results/today/"]
     for dir in dirList:
-        print(f'removing {dir}.......')
         if (os.path.exists(dir)):
+            print(f'removing {dir}.......')
             file_list = os.listdir(dir) 
             for file in file_list:
                 os.remove(f'{dir}{file}')
         if(not os.path.exists(dir)):
+            print(f'adding {dir}.......')
             os.mkdir(dir)
 
 resetDirectory()
