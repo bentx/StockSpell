@@ -120,7 +120,7 @@ def trianglePattern(df,index,length,correction):
     for i in range(index-length,index+1):
         if i==index:
             if PH!=-1 and  float(df.at[PH, 'high'])<float(df.at[index, 'close']) and  not float(df.at[PH, 'high'])<float(df.at[index-1, 'close']):
-                #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
+                print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
                 return True
         if i<index-2:
             if dataUtility.FCTP(df,i-2)+dataUtility.FCTP(df,i-1)+dataUtility.FCTP(df,i)+dataUtility.FCTP(df,i+1)+dataUtility.FCTP(df,i+2)=="GGRRR" :
