@@ -296,9 +296,17 @@ def resetDirectory():
         if(not os.path.exists(dir)):
             print(f'adding {dir}.......')
             os.mkdir(dir)
+        f = open({dir}+"demofile2.txt", "a")
+        f.write("Now the file has more content!")
+        f.close()
+        file_list = os.listdir(dir) 
+        for file in file_list:
+              print(f'isther {file}')
+            
+
 
 resetDirectory()
-WatchStockMarket()
-analyzeResult()
-updateResult()
-moniterResult()
+#WatchStockMarket()
+#analyzeResult()
+#updateResult()
+#moniterResult()
