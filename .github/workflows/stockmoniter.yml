@@ -39,12 +39,17 @@ jobs:
         run: |
           python magicStock.py
           ls -lrt
-          cd Results/details
+          cd Results/nodetails
           ls -lrt
-
-      - name: GIT Commit Result
-        run: |
+          pwd
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "bensonxaviertx@gmail.com"
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push
+
+      - name: GIT Commit Result
+        run: |
+          ls -lrt
+          cd Results/nodetails
+          ls -lrt
+          pwd
