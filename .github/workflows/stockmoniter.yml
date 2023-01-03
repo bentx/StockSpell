@@ -42,14 +42,17 @@ jobs:
           cd Results/nodetails
           ls -lrt
           pwd
-          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-          git config --global user.email "bensonxaviertx@gmail.com"
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
-          git push
-
+          
       - name: GIT Commit Result
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automated Change
+          
+      - name: GIT status
         run: |
           ls -lrt
-          cd Results/nodetails
+          cd Results
+          la-lrt
+          cd nodetails
           ls -lrt
           pwd
