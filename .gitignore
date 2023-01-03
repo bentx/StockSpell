@@ -1,1 +1,7 @@
-
+*.pkl
+*.log
+*.pyc
+*./log/
+ta-lib/*
+Results/*.csv
+Results/StockWiseStratagy/*.csv
