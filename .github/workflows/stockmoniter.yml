@@ -38,6 +38,9 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           python magicStock.py
+          ls -lrt
+          cd Results/details
+          ls -lrt
 
       - name: GIT Commit Result
         run: |
