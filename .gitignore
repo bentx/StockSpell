@@ -2,5 +2,4 @@
 *.log
 *.pyc
 *./log/
-Results/*.csv
 Results/StockWiseStratagy/*.csv
