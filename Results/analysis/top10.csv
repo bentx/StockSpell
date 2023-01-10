@@ -1,0 +1,360 @@
+2022-01-31 00:00:00,ACC,"date
+2022-02-28    0.913989
+Freq: M, Name: ACC, dtype: float64"
+2022-01-31 00:00:00,AEGISCHEM,"date
+2022-02-28    0.832758
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-01-31 00:00:00,AMRUTANJAN,"date
+2022-02-28    1.010583
+Freq: M, Name: AMRUTANJAN, dtype: float64"
+2022-01-31 00:00:00,ANDHRAPAP,"date
+2022-02-28    1.025168
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-01-31 00:00:00,APOLLOTYRE,"date
+2022-02-28    0.852527
+Freq: M, Name: APOLLOTYRE, dtype: float64"
+2022-01-31 00:00:00,ARVIND,"date
+2022-02-28    0.812478
+Freq: M, Name: ARVIND, dtype: float64"
+2022-01-31 00:00:00,ASHOKLEY,"date
+2022-02-28    0.895134
+Freq: M, Name: ASHOKLEY, dtype: float64"
+2022-01-31 00:00:00,ASIANHOTNR,"date
+2022-02-28    0.862428
+Freq: M, Name: ASIANHOTNR, dtype: float64"
+2022-01-31 00:00:00,ASIANPAINT,"date
+2022-02-28    1.007106
+Freq: M, Name: ASIANPAINT, dtype: float64"
+2022-01-31 00:00:00,SKFINDIA,"date
+2022-02-28    0.985853
+Freq: M, Name: SKFINDIA, dtype: float64"
+2022-02-28 00:00:00,ACC,"date
+2022-03-31    1.029773
+Freq: M, Name: ACC, dtype: float64"
+2022-02-28 00:00:00,AEGISCHEM,"date
+2022-03-31    1.217713
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-02-28 00:00:00,AMRUTANJAN,"date
+2022-03-31    0.95099
+Freq: M, Name: AMRUTANJAN, dtype: float64"
+2022-02-28 00:00:00,ANDHRAPAP,"date
+2022-03-31    1.378069
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-02-28 00:00:00,APOLLOTYRE,"date
+2022-03-31    1.034109
+Freq: M, Name: APOLLOTYRE, dtype: float64"
+2022-02-28 00:00:00,ARVIND,"date
+2022-03-31    0.979635
+Freq: M, Name: ARVIND, dtype: float64"
+2022-02-28 00:00:00,ASHOKLEY,"date
+2022-03-31    0.988201
+Freq: M, Name: ASHOKLEY, dtype: float64"
+2022-02-28 00:00:00,ASIANHOTNR,"date
+2022-03-31    1.079088
+Freq: M, Name: ASIANHOTNR, dtype: float64"
+2022-02-28 00:00:00,ASIANPAINT,"date
+2022-03-31    0.97017
+Freq: M, Name: ASIANPAINT, dtype: float64"
+2022-02-28 00:00:00,SKFINDIA,"date
+2022-03-31    0.985817
+Freq: M, Name: SKFINDIA, dtype: float64"
+2022-03-31 00:00:00,ANDHRAPAP,"date
+2022-04-30    1.13658
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-03-31 00:00:00,RELINFRA,"date
+2022-04-30    1.100178
+Freq: M, Name: RELINFRA, dtype: float64"
+2022-03-31 00:00:00,BLUESTARCO,"date
+2022-04-30    1.080129
+Freq: M, Name: BLUESTARCO, dtype: float64"
+2022-03-31 00:00:00,ATUL,"date
+2022-04-30    0.869833
+Freq: M, Name: ATUL, dtype: float64"
+2022-03-31 00:00:00,BATAINDIA,"date
+2022-04-30    0.9935
+Freq: M, Name: BATAINDIA, dtype: float64"
+2022-03-31 00:00:00,ASIANHOTNR,"date
+2022-04-30    1.015528
+Freq: M, Name: ASIANHOTNR, dtype: float64"
+2022-03-31 00:00:00,BAYERCROP,"date
+2022-04-30    0.935716
+Freq: M, Name: BAYERCROP, dtype: float64"
+2022-03-31 00:00:00,BASF,"date
+2022-04-30    0.871189
+Freq: M, Name: BASF, dtype: float64"
+2022-03-31 00:00:00,AEGISCHEM,"date
+2022-04-30    1.077353
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-03-31 00:00:00,BAJAJHLDNG,"date
+2022-04-30    1.03161
+Freq: M, Name: BAJAJHLDNG, dtype: float64"
+2022-04-30 00:00:00,ANDHRAPAP,"date
+2022-05-31    0.975071
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-04-30 00:00:00,BLUESTARCO,"date
+2022-05-31    0.901483
+Freq: M, Name: BLUESTARCO, dtype: float64"
+2022-04-30 00:00:00,RELINFRA,"date
+2022-05-31    0.873735
+Freq: M, Name: RELINFRA, dtype: float64"
+2022-04-30 00:00:00,BOMDYEING,"date
+2022-05-31    0.841449
+Freq: M, Name: BOMDYEING, dtype: float64"
+2022-04-30 00:00:00,AMRUTANJAN,"date
+2022-05-31    0.908123
+Freq: M, Name: AMRUTANJAN, dtype: float64"
+2022-04-30 00:00:00,AEGISCHEM,"date
+2022-05-31    0.982615
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-04-30 00:00:00,ASIANPAINT,"date
+2022-05-31    0.883371
+Freq: M, Name: ASIANPAINT, dtype: float64"
+2022-04-30 00:00:00,ACC,"date
+2022-05-31    0.943965
+Freq: M, Name: ACC, dtype: float64"
+2022-04-30 00:00:00,BAJAJHLDNG,"date
+2022-05-31    0.989196
+Freq: M, Name: BAJAJHLDNG, dtype: float64"
+2022-04-30 00:00:00,FORCEMOT,"date
+2022-05-31    0.884782
+Freq: M, Name: FORCEMOT, dtype: float64"
+2022-05-31 00:00:00,ANDHRAPAP,"date
+2022-06-30    0.940906
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-05-31 00:00:00,AEGISCHEM,"date
+2022-06-30    0.960478
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-05-31 00:00:00,BALKRISIND,"date
+2022-06-30    0.918872
+Freq: M, Name: BALKRISIND, dtype: float64"
+2022-05-31 00:00:00,BAYERCROP,"date
+2022-06-30    0.927576
+Freq: M, Name: BAYERCROP, dtype: float64"
+2022-05-31 00:00:00,APOLLOTYRE,"date
+2022-06-30    0.847722
+Freq: M, Name: APOLLOTYRE, dtype: float64"
+2022-05-31 00:00:00,ASHOKLEY,"date
+2022-06-30    1.074909
+Freq: M, Name: ASHOKLEY, dtype: float64"
+2022-05-31 00:00:00,ASTRAZEN,"date
+2022-06-30    0.89947
+Freq: M, Name: ASTRAZEN, dtype: float64"
+2022-05-31 00:00:00,BLISSGVS,"date
+2022-06-30    0.895577
+Freq: M, Name: BLISSGVS, dtype: float64"
+2022-05-31 00:00:00,BOMDYEING,"date
+2022-06-30    0.913917
+Freq: M, Name: BOMDYEING, dtype: float64"
+2022-05-31 00:00:00,ACC,"date
+2022-06-30    0.965225
+Freq: M, Name: ACC, dtype: float64"
+2022-06-30 00:00:00,ASHOKLEY,"date
+2022-07-31    1.008119
+Freq: M, Name: ASHOKLEY, dtype: float64"
+2022-06-30 00:00:00,COROMANDEL,"date
+2022-07-31    1.079316
+Freq: M, Name: COROMANDEL, dtype: float64"
+2022-06-30 00:00:00,DICIND,"date
+2022-07-31    1.002229
+Freq: M, Name: DICIND, dtype: float64"
+2022-06-30 00:00:00,BRITANNIA,"date
+2022-07-31    1.125202
+Freq: M, Name: BRITANNIA, dtype: float64"
+2022-06-30 00:00:00,ASTRAZEN,"date
+2022-07-31    1.132911
+Freq: M, Name: ASTRAZEN, dtype: float64"
+2022-06-30 00:00:00,ABBOTINDIA,"date
+2022-07-31    1.06688
+Freq: M, Name: ABBOTINDIA, dtype: float64"
+2022-06-30 00:00:00,ANDHRAPAP,"date
+2022-07-31    1.131305
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-06-30 00:00:00,BORORENEW,"date
+2022-07-31    1.026758
+Freq: M, Name: BORORENEW, dtype: float64"
+2022-06-30 00:00:00,SKFINDIA,"date
+2022-07-31    1.165251
+Freq: M, Name: SKFINDIA, dtype: float64"
+2022-06-30 00:00:00,AEGISCHEM,"date
+2022-07-31    1.238517
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-07-31 00:00:00,SKFINDIA,"date
+2022-08-31    1.145248
+Freq: M, Name: SKFINDIA, dtype: float64"
+2022-07-31 00:00:00,ITDCEM,"date
+2022-08-31    1.305709
+Freq: M, Name: ITDCEM, dtype: float64"
+2022-07-31 00:00:00,BRITANNIA,"date
+2022-08-31    0.960863
+Freq: M, Name: BRITANNIA, dtype: float64"
+2022-07-31 00:00:00,ASHOKLEY,"date
+2022-08-31    1.033557
+Freq: M, Name: ASHOKLEY, dtype: float64"
+2022-07-31 00:00:00,ABBOTINDIA,"date
+2022-08-31    0.936281
+Freq: M, Name: ABBOTINDIA, dtype: float64"
+2022-07-31 00:00:00,AEGISCHEM,"date
+2022-08-31    1.136179
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-07-31 00:00:00,COROMANDEL,"date
+2022-08-31    1.02367
+Freq: M, Name: COROMANDEL, dtype: float64"
+2022-07-31 00:00:00,BAYERCROP,"date
+2022-08-31    1.031081
+Freq: M, Name: BAYERCROP, dtype: float64"
+2022-07-31 00:00:00,CGPOWER,"date
+2022-08-31    1.003123
+Freq: M, Name: CGPOWER, dtype: float64"
+2022-07-31 00:00:00,CEATLTD,"date
+2022-08-31    1.10309
+Freq: M, Name: CEATLTD, dtype: float64"
+2022-08-31 00:00:00,ITDCEM,"date
+2022-09-30    1.070052
+Freq: M, Name: ITDCEM, dtype: float64"
+2022-08-31 00:00:00,ANDHRAPAP,"date
+2022-09-30    0.899654
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-08-31 00:00:00,RELINFRA,"date
+2022-09-30    0.843827
+Freq: M, Name: RELINFRA, dtype: float64"
+2022-08-31 00:00:00,CEATLTD,"date
+2022-09-30    1.131679
+Freq: M, Name: CEATLTD, dtype: float64"
+2022-08-31 00:00:00,AEGISCHEM,"date
+2022-09-30    0.921795
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-08-31 00:00:00,SKFINDIA,"date
+2022-09-30    0.970853
+Freq: M, Name: SKFINDIA, dtype: float64"
+2022-08-31 00:00:00,BHARATGEAR,"date
+2022-09-30    1.232138
+Freq: M, Name: BHARATGEAR, dtype: float64"
+2022-08-31 00:00:00,BASF,"date
+2022-09-30    0.897762
+Freq: M, Name: BASF, dtype: float64"
+2022-08-31 00:00:00,BBL,"date
+2022-09-30    0.974918
+Freq: M, Name: BBL, dtype: float64"
+2022-08-31 00:00:00,BAJAJELEC,"date
+2022-09-30    0.975099
+Freq: M, Name: BAJAJELEC, dtype: float64"
+2022-09-30 00:00:00,ITDCEM,"date
+2022-10-31    1.06239
+Freq: M, Name: ITDCEM, dtype: float64"
+2022-09-30 00:00:00,CEATLTD,"date
+2022-10-31    0.979887
+Freq: M, Name: CEATLTD, dtype: float64"
+2022-09-30 00:00:00,BHARATGEAR,"date
+2022-10-31    0.927094
+Freq: M, Name: BHARATGEAR, dtype: float64"
+2022-09-30 00:00:00,RELINFRA,"date
+2022-10-31    1.034748
+Freq: M, Name: RELINFRA, dtype: float64"
+2022-09-30 00:00:00,APOLLOTYRE,"date
+2022-10-31    1.043057
+Freq: M, Name: APOLLOTYRE, dtype: float64"
+2022-09-30 00:00:00,ANDHRAPAP,"date
+2022-10-31    1.113233
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-09-30 00:00:00,BAJAJHLDNG,"date
+2022-10-31    1.042225
+Freq: M, Name: BAJAJHLDNG, dtype: float64"
+2022-09-30 00:00:00,BANARISUG,"date
+2022-10-31    0.989981
+Freq: M, Name: BANARISUG, dtype: float64"
+2022-09-30 00:00:00,AEGISCHEM,"date
+2022-10-31    1.146809
+Freq: M, Name: AEGISCHEM, dtype: float64"
+2022-09-30 00:00:00,SKFINDIA,"date
+2022-10-31    0.933219
+Freq: M, Name: SKFINDIA, dtype: float64"
+2022-10-31 00:00:00,BHARATGEAR,"date
+2022-11-30    1.008047
+Freq: M, Name: BHARATGEAR, dtype: float64"
+2022-10-31 00:00:00,ITDCEM,"date
+2022-11-30    0.983457
+Freq: M, Name: ITDCEM, dtype: float64"
+2022-10-31 00:00:00,ANDHRAPAP,"date
+2022-11-30    0.865496
+Freq: M, Name: ANDHRAPAP, dtype: float64"
+2022-10-31 00:00:00,BBL,"date
+2022-11-30    0.994935
+Freq: M, Name: BBL, dtype: float64"
+2022-10-31 00:00:00,APOLLOTYRE,"date
+2022-11-30    1.088579
+Freq: M, Name: APOLLOTYRE, dtype: float64"
+2022-10-31 00:00:00,FORCEMOT,"date
+2022-11-30    1.146742
+Freq: M, Name: FORCEMOT, dtype: float64"
+2022-10-31 00:00:00,BAJAJHLDNG,"date
+2022-11-30    0.945103
+Freq: M, Name: BAJAJHLDNG, dtype: float64"
+2022-10-31 00:00:00,BLUESTARCO,"date
+2022-11-30    0.991425
+Freq: M, Name: BLUESTARCO, dtype: float64"
+2022-10-31 00:00:00,CEATLTD,"date
+2022-11-30    1.221084
+Freq: M, Name: CEATLTD, dtype: float64"
+2022-10-31 00:00:00,RELINFRA,"date
+2022-11-30    1.114882
+Freq: M, Name: RELINFRA, dtype: float64"
+2022-11-30 00:00:00,CEATLTD,"date
+2022-12-31    0.872348
+Freq: M, Name: CEATLTD, dtype: float64"
+2022-11-30 00:00:00,APOLLOTYRE,"date
+2022-12-31    1.024806
+Freq: M, Name: APOLLOTYRE, dtype: float64"
+2022-11-30 00:00:00,CGPOWER,"date
+2022-12-31    0.966738
+Freq: M, Name: CGPOWER, dtype: float64"
+2022-11-30 00:00:00,BBL,"date
+2022-12-31    1.017672
+Freq: M, Name: BBL, dtype: float64"
+2022-11-30 00:00:00,FORCEMOT,"date
+2022-12-31    0.888348
+Freq: M, Name: FORCEMOT, dtype: float64"
+2022-11-30 00:00:00,EXIDEIND,"date
+2022-12-31    0.954461
+Freq: M, Name: EXIDEIND, dtype: float64"
+2022-11-30 00:00:00,BRITANNIA,"date
+2022-12-31    0.987426
+Freq: M, Name: BRITANNIA, dtype: float64"
+2022-11-30 00:00:00,BHARATFORG,"date
+2022-12-31    1.023617
+Freq: M, Name: BHARATFORG, dtype: float64"
+2022-11-30 00:00:00,BAJAJHLDNG,"date
+2022-12-31    0.912096
+Freq: M, Name: BAJAJHLDNG, dtype: float64"
+2022-11-30 00:00:00,BHARATGEAR,"date
+2022-12-31    0.911103
+Freq: M, Name: BHARATGEAR, dtype: float64"
+2022-12-31 00:00:00,UNITEDPOLY,"date
+2023-01-31    1.068559
+Freq: M, Name: UNITEDPOLY, dtype: float64"
+2022-12-31 00:00:00,UCOBANK,"date
+2023-01-31    0.942857
+Freq: M, Name: UCOBANK, dtype: float64"
+2022-12-31 00:00:00,PSB,"date
+2023-01-31    0.905185
+Freq: M, Name: PSB, dtype: float64"
+2022-12-31 00:00:00,FOCUS,"date
+2023-01-31    0.95912
+Freq: M, Name: FOCUS, dtype: float64"
+2022-12-31 00:00:00,BSHSL,"date
+2023-01-31    1.379424
+Freq: M, Name: BSHSL, dtype: float64"
+2022-12-31 00:00:00,SOUTHBANK,"date
+2023-01-31    0.992021
+Freq: M, Name: SOUTHBANK, dtype: float64"
+2022-12-31 00:00:00,PARACABLES,"date
+2023-01-31    1.147564
+Freq: M, Name: PARACABLES, dtype: float64"
+2022-12-31 00:00:00,KTKBANK,"date
+2023-01-31    0.978311
+Freq: M, Name: KTKBANK, dtype: float64"
+2022-12-31 00:00:00,AXISCADES,"date
+2023-01-31    1.027852
+Freq: M, Name: AXISCADES, dtype: float64"
+2022-12-31 00:00:00,REFEX,"date
+2023-01-31    0.929585
+Freq: M, Name: REFEX, dtype: float64"
