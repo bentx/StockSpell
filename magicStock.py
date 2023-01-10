@@ -178,7 +178,7 @@ def WatchStockMarket():
             line_count+= 1
         except Exception as e:
              print("Oops!", e, "occurred.")
-        top10.getTopScorers(rootdf)
+    top10.getTopScorers(rootdf)
     print(f'Processed {line_count} lines.')
     
     
