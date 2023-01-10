@@ -1,5 +1,6 @@
 name: StockMonitor
 on:
+  workflow_dispatch:
   schedule:
     - cron: '30 12 * * 1-5'
 
@@ -29,6 +30,8 @@ jobs:
           ./configure  --prefix="/usr"
           make
           sudo make install
+          rm -rf ta-lib
+          rm -rf ta-lib-0.4.0-src.tar.gz
 
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
