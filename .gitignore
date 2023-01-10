@@ -5,3 +5,5 @@
 ta-lib/*
 Results/*.csv
 Results/StockWiseStratagy/*.csv
+__pycache__/*
+*.gz
