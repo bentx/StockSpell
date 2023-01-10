@@ -19,6 +19,7 @@ import secretIngredient
 import stockFormula
 import os.path
 import os
+import top10
 
 
 
@@ -74,6 +75,8 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 testResult.append(["RSAADX",secretIngredient.RSAADX(df,index),index+1])
                 #testResult.append(["linebreak",secretIngredient.findTrend(df,index,120,3),index+1])
                 testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
+                testResult.append(["TrianglePatternWithHA",secretIngredient.trianglePattern(ha_dfList[idx],index,120,3),index+1])
+
 
 
 
@@ -135,11 +138,34 @@ def WatchStockMarket():
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     msg={}
+    rootdf = pd.DataFrame()
+
     
     for row in csv_reader:
         try:
             print(row[1])
-            process(row[0],row[1],row[2])
+            stockCODE=row[0]
+            stock=row[1]
+            timeLine=[["1D",365]]
+            if not os.path.isfile("./DFState/data"+stockCODE+timeLine[0][0]+".pkl"):
+                dataList=dataUtility.getStockData(stockCODE,timeLine)
+                [dfList,ha_dfList]=dataUtility.preProcess(dataList,stockCODE)
+                getStatistics(stockCODE,stock,dfList,ha_dfList)
+
+                dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
+                df=dfList[0][['date','close']]
+                df=df.set_index('date')
+                df.rename(columns = {'close':row[0]}, inplace = True)
+                rootdf=pd.concat([rootdf, df], axis=1) 
+            else:
+                [dfList,ha_dfList]=dataUtility.getPreLoadedData(timeLine,stockCODE)
+                getStatistics(stockCODE,stock,dfList,ha_dfList) 
+
+                dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
+                df=dfList[0][['date','close']]
+                df=df.set_index('date')
+                df.rename(columns = {'close':row[0]}, inplace = True)
+                rootdf=pd.concat([rootdf, df], axis=1)
             # for idx in output:
             #     for stratagies in output[idx]:
             #         dataUtility.storeInFile("./Results/StockWiseStratagy/OverALLdata.csv",[row[0],row[1],str(idx)+stratagies,output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3],str(output[idx][stratagies][3]-output[idx][stratagies][2])])
@@ -152,8 +178,7 @@ def WatchStockMarket():
             line_count+= 1
         except Exception as e:
              print("Oops!", e, "occurred.")
-             
-    line_count += 1
+        top10.getTopScorers(rootdf)
     print(f'Processed {line_count} lines.')
     
     

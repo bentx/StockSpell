@@ -138,3 +138,18 @@ def percentageCalc(num1,num2):
 def findPercentage(num1,num2):
     return int(num1)/int(num2)*100
 
+
+
+def get_rolling_ret(df,n):
+    return df.rolling(n).apply(np.prod)
+
+def get_top10(ret_12,ret_6,ret_3,date):
+    top_50=ret_12.loc[date].nlargest(50).index
+    top_30=ret_6.loc[date,top_50].nlargest(30).index
+    top_10=ret_3.loc[date,top_30].nlargest(10).index
+    return top_10
+
+def pf_perfomance(mtl,date):
+    portfolio = mtl.loc[date:,get_top10(date)][1:2]
+    return portfolio.mean(axis=1).values[0]
+

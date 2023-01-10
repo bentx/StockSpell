@@ -59,7 +59,7 @@ def preProcess(dataList,stockCode):
         ha_df=stockFormula.MACD(ha_df)
         ha_df=stockFormula.VWMA(ha_df)
         ha_df=stockFormula.RSI(ha_df)
-        df=stockFormula.VA(ha_df,"1WVA")
+        ha_df=stockFormula.VA(ha_df,"1WVA")
         ha_df=stockFormula.bollinger_bands(ha_df)
         ha_df=stockFormula.ADX(ha_df)
         ha_df=stockFormula.MovingAverage(ha_df)
