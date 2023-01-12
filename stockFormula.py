@@ -149,6 +149,13 @@ def get_top10(ret_12,ret_6,ret_3,date):
     top_10=ret_3.loc[date,top_30].nlargest(10).index
     return top_10
 
+def get_top10_WithStratagy(ret_12,ret_6,ret_3,date,stockList):
+    filter = ret_12.reindex(columns = stockList)
+    top_50=filter.loc[date].nlargest(8).index
+    top_30=ret_6.loc[date,top_50].nlargest(5).index
+    top_10=ret_3.loc[date,top_30].nlargest(3).index
+    return top_10
+
 def pf_perfomance(mtl,date):
     portfolio = mtl.loc[date:,get_top10(date)][1:2]
     return portfolio.mean(axis=1).values[0]
