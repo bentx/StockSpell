@@ -312,7 +312,7 @@ def updateResult():
                 print("Oops!", e, "occurred.")
 
 def resetDirectory():
-    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy"]
+    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/"]
     for dir in dirList:
         if (os.path.exists(dir)):
             print(f'removing {dir}.......')
