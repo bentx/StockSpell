@@ -22,7 +22,10 @@ def getStockData(stockCode,timeList):
         #todate = datetime.today()-timedelta(days=365)
         todate = datetime.today()
         fromdate = todate - timedelta(days=timeLine[1])
-        response = requests.get("https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol="+stockCode+"&resolution="+timeLine[0]+"&from="+str(int (time.mktime(fromdate.timetuple())))+"&to="+str(int (time.mktime(todate.timetuple()))))
+        response = requests.get("https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=MSUMI&resolution=1D&from=1634083200&to=1673827200&countback=365&currencyCode=INR",headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36', "Upgrade-Insecure-Requests": "1","DNT": "1","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language": "en-US,en;q=0.5","Accept-Encoding": "gzip, deflate"}
+)      
+
+        #response = requests.get("https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol="+stockCode+"&resolution="+timeLine[0]+"&from="+str(int (time.mktime(fromdate.timetuple())))+"&to="+str(int (time.mktime(todate.timetuple()))),headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36', "Upgrade-Insecure-Requests": "1","DNT": "1","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language": "en-US,en;q=0.5","Accept-Encoding": "gzip, deflate"})
         data.append([timeLine[0],response.json()])
     return data
     
