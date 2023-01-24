@@ -54,6 +54,7 @@ def preProcess(dataList,stockCode):
         df=stockFormula.ADX(df)
         df=stockFormula.MovingAverage(df)
         df=stockFormula.AverageVolume(df)
+        df['candle'] = df.apply(lambda row : stockFormula.candlefinder(row[1],row[4]), axis=1)
 
         #df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
 

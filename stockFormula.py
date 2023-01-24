@@ -114,8 +114,15 @@ def heikin_ashi(df):
     heikin_ashi_df['low'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['low']).min(axis=1)
     heikin_ashi_df['volume']=df['volume']
     heikin_ashi_df['date']=df['date']
+    heikin_ashi_df['candle'] = heikin_ashi_df.apply(lambda row : candlefinder(row[0],row[3]), axis=1)
 
     return heikin_ashi_df
+
+def candlefinder(open,close):
+    if float(close) > float(open):
+        return "G"
+    else:
+        return "R"  
 
 
 def bollinger_bands(df):

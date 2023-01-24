@@ -123,10 +123,11 @@ def trianglePattern(df,index,length,correction):
                 #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
                 return True
         if i<index-2:
-            if dataUtility.FCTP(df,i-2)+dataUtility.FCTP(df,i-1)+dataUtility.FCTP(df,i)+dataUtility.FCTP(df,i+1)+dataUtility.FCTP(df,i+2)=="GGRRR" :
+            
+            if df.at[i-2, 'candle']+df.at[i-1, 'candle']+df.at[i, 'candle']+df.at[i+1, 'candle']+df.at[i+2, 'candle']=="GGRRR" :
                 PH= i-1
                 Pattern=Pattern+"H"
-            if dataUtility.FCTP(df,i-2)+dataUtility.FCTP(df,i-1)+dataUtility.FCTP(df,i)+dataUtility.FCTP(df,i+1)+dataUtility.FCTP(df,i+2)=="RRGGG" :
+            if df.at[i-2, 'candle']+df.at[i-1, 'candle']+df.at[i, 'candle']+df.at[i+1, 'candle']+df.at[i+2, 'candle']=="RRGGG" :
                 Pattern=Pattern+"L"
     return False
 
