@@ -113,7 +113,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                             overall[result[0]].append([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
      for stratagy in overall:
         [total,win,totalAmount,totalWin]=dataUtility.calcWinWithPercentage(stratagy,overall,1)
-        dataUtility.storeInFile("./Results/"+str(idx)+stratagy+"overAll.csv",[stockCODE,stratagy,total,win])
+        dataUtility.storeInFile("./Results/overall/"+str(idx)+stratagy+"overAll.csv",[stockCODE,stratagy,total,win])
         output[idx][stratagy]=[total,win,totalAmount,totalWin]
         
     return output
@@ -321,7 +321,7 @@ def updateResult():
                 print("Oops!", e, "occurred.")
 
 def resetDirectory():
-    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/"]
+    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/","./Results/overall/"]
     for dir in dirList:
         if (os.path.exists(dir)):
             print(f'removing {dir}.......')
