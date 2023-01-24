@@ -120,7 +120,7 @@ def trianglePattern(df,index,length,correction):
     for i in range(index-length,index+1):
         if i==index:
             if PH!=-1 and  float(df.at[PH, 'high'])<float(df.at[index, 'close']) and  not float(df.at[PH, 'high'])<float(df.at[index-1, 'close']):
-                print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
+                #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
                 return True
         if i<index-2:
             if dataUtility.FCTP(df,i-2)+dataUtility.FCTP(df,i-1)+dataUtility.FCTP(df,i)+dataUtility.FCTP(df,i+1)+dataUtility.FCTP(df,i+2)=="GGRRR" :
@@ -130,6 +130,34 @@ def trianglePattern(df,index,length,correction):
                 Pattern=Pattern+"L"
     return False
 
+def PDCB(df,index):
+    date=datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%a")
+    if date=="Mon":
+        predate=datetime.fromtimestamp(int(df.at[index-5, 'date']),IST).strftime("%a")
+        return checkPDCB(df,index-5,index)
+    if date=="Tue":
+        predate=datetime.fromtimestamp(int(df.at[index-6, 'date']),IST).strftime("%a")
+        return checkPDCB(df,index-6,index)
+    if date=="Wed":
+        predate=datetime.fromtimestamp(int(df.at[index-7, 'date']),IST).strftime("%a")
+        return checkPDCB(df,index-7,index)
+    if date=="Thu":
+        predate=datetime.fromtimestamp(int(df.at[index-8, 'date']),IST).strftime("%a")
+        return checkPDCB(df,index-8,index)
+    if date=="Fri":
+        return checkPDCB(df,index-9,index)
+
+
+
+def checkPDCB(df,index,orginalIndex):
+    high=0.00
+    predate=datetime.fromtimestamp(int(df.at[index+4, 'date']),IST).strftime("%a")
+    for i in range(index,index+5):
+        if float(df.at[i, 'high'])>high:
+            high=float(df.at[i, 'high'])
+    if high<float(df.at[orginalIndex, 'close']):
+        return True
+    return False
 
 
 

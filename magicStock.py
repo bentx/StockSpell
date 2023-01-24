@@ -58,24 +58,28 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                     day9=df.at[index+9, 'close']
                     day10=df.at[index+10, 'close']
 
-                testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA100'],row['MA200'],row['MA100']),index+1])
-                testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA100'],df.at[index-1, 'MA50'],row['MA100'],row['MA50']),index+1])
-                testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
-                testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA100'],df.at[index-1, 'MA20'],row['MA100'],row['MA20']),index+1])
-                testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
+                # testResult.append(["MA200VS100",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA100'],row['MA200'],row['MA100']),index+1])
+                # testResult.append(["MA100VS50",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA100'],df.at[index-1, 'MA50'],row['MA100'],row['MA50']),index+1])
+                # testResult.append(["MA50VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA50'],df.at[index-1, 'MA20'],row['MA50'],row['MA20']),index+1])
+                # testResult.append(["MA100VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA100'],df.at[index-1, 'MA20'],row['MA100'],row['MA20']),index+1])
+                # testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
+   
                 #testResult.append(["OPG",secretIngredient.OpenPercentageGap(df.at[index-1, 'close'],df.at[index, 'open'],df.at[index, 'av']),index])
+   
                 testResult.append(["1WA1",secretIngredient.WA1Stratagy1(ha_dfList[idx],index),index+1])
                 testResult.append(["1WA2",secretIngredient.WA1Stratagy2(ha_dfList[idx],index),index+1])
-                testResult.append(["bodyTouch200",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA200'),index+1])
-                testResult.append(["bodyTouch100",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA100'),index+1])
-                testResult.append(["wigTouch200",secretIngredient.wigTouch(ha_dfList[idx],index,'MA200'),index+1])
-                testResult.append(["wigTouch100",secretIngredient.wigTouch(ha_dfList[idx],index,'MA100'),index+1])
-                testResult.append(["TopGainer1",secretIngredient.TopGainer(df,index,1),index+1])
-                testResult.append(["TopGainer2",secretIngredient.TopGainer(df,index,2),index+1])
+                # testResult.append(["bodyTouch200",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA200'),index+1])
+                # testResult.append(["bodyTouch100",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA100'),index+1])
+                # testResult.append(["wigTouch200",secretIngredient.wigTouch(ha_dfList[idx],index,'MA200'),index+1])
+                # testResult.append(["wigTouch100",secretIngredient.wigTouch(ha_dfList[idx],index,'MA100'),index+1])
+                # testResult.append(["TopGainer1",secretIngredient.TopGainer(df,index,1),index+1])
+                # testResult.append(["TopGainer2",secretIngredient.TopGainer(df,index,2),index+1])
                 testResult.append(["RSAADX",secretIngredient.RSAADX(df,index),index+1])
-                #testResult.append(["linebreak",secretIngredient.findTrend(df,index,120,3),index+1])
-                testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
+                # #testResult.append(["linebreak",secretIngredient.findTrend(df,index,120,3),index+1])
+                # testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
                 testResult.append(["TrianglePatternWithHA",secretIngredient.trianglePattern(ha_dfList[idx],index,120,3),index+1])
+                testResult.append(["PDCB",secretIngredient.PDCB(df,index),index+1])
+
 
 
 
@@ -150,6 +154,11 @@ def WatchStockMarket():
             if not os.path.isfile("./DFState/data"+stockCODE+timeLine[0][0]+".pkl"):
                 dataList=dataUtility.getStockData(stockCODE,timeLine)
                 [dfList,ha_dfList]=dataUtility.preProcess(dataList,stockCODE)
+
+                if(int(dfList[0].at[0, 'date'])<1627410600):#To remove the unwanted 2000 dates
+                     print(stockCODE)
+                     dataUtility.storeInFile("./Results/Scam/scam.csv",[dfList[0].index[0].strftime("%Y-%m-%d %H:%M:%S"),stock,stockCODE])
+                     continue
                 getStatistics(stockCODE,stock,dfList,ha_dfList)
 
                 dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
@@ -178,8 +187,8 @@ def WatchStockMarket():
             line_count+= 1
         except Exception as e:
              print("Oops!", e, "occurred.")
-    top10.getTopScorers(rootdf)
-    top10.getTopAmongStratagy(rootdf)
+    #top10.getTopScorers(rootdf)
+    #top10.getTopAmongStratagy(rootdf)
     print(f'Processed {line_count} lines.')
     
     
