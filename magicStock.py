@@ -88,9 +88,9 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
 
 
                 for result in testResult:
-                    if result[1]:
+                    if result[1][0]:
                       if( index>df.shape[0]-2 ):
-                            dataUtility.storeInFile("./Results/today/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,dataUtility.findRange(WVA1,df.at[index, '1WVA']),dataUtility.findRange(ADX,df.at[index, 'adx']),dataUtility.findRange(RSI,df.at[index, 'rsi'])])
+                            dataUtility.storeInFile("./Results/today/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,dataUtility.findRange(WVA1,df.at[index, '1WVA']),dataUtility.findRange(ADX,df.at[index, 'adx']),dataUtility.findRange(RSI,df.at[index, 'rsi']),result[1][1]])
 
                       else:
                         close=df.at[result[2], "open"]
@@ -102,7 +102,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                            # dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,float(close)-float(open),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),open])
                         else:
                              #logger.info(str(datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).isoformat())+"|"+result[0]+"|"+stock+"|"+stockCODE+"|"+str(df.at[result[2], '1WVA'])+"|"+str(df.at[result[2], 'up'])+"|"+str(df.at[result[2], 'down'])+"|"+str(df.at[result[2], 'middle'])+"|"+str(df.at[result[2], 'adx'])+"|"+str(df.at[result[2], 'rsi'])+"|"+str(float(day1)-float(close))+"|"+str(float(day2)-float(close))+"|"+str(float(day3)-float(close))+"|"+str(float(day4)-float(close))+"|"+str(float(day5)-float(close))+"|"+str(float(day6)-float(close))+"|"+str(float(day7)-float(close))+"|"+str(float(day8)-float(close))+"|"+str(float(day9)-float(close))+"|"+str(float(day10)-float(close)))
-                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,df.at[index, '1WVA'],df.at[index, 'adx'],df.at[index, 'rsi'],float(close),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
+                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,df.at[index, '1WVA'],df.at[index, 'adx'],df.at[index, 'rsi'],float(close),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close),result[1][1]])
 
                         
                         #print([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])

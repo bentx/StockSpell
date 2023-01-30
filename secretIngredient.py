@@ -29,14 +29,14 @@ def OpenPercentageGap(prevclose,open,av):
 
 def WA1Stratagy1(ha_df,currIndex):
     if ( "RRRG1"==dataUtility.findCandleType(ha_df,currIndex-3)+dataUtility.findCandleType(ha_df,currIndex-2)+dataUtility.findCandleType(ha_df,currIndex-1)+dataUtility.findCandleType(ha_df,currIndex) )and (dataUtility.isTouchLow(ha_df,currIndex-1) or (dataUtility.isTouchLow(ha_df,currIndex-2))):
-        return True
-    return False
+        return [True,"see currentdate"]
+    return [False,"see currentdate"]
 
 
 def WA1Stratagy2(ha_df,currIndex):
     if ( "RRRR1"==dataUtility.findCandleType(ha_df,currIndex-3)+dataUtility.findCandleType(ha_df,currIndex-2)+dataUtility.findCandleType(ha_df,currIndex-1)+dataUtility.findCandleType(ha_df,currIndex) )and (dataUtility.isTouchLow(ha_df,currIndex-1) or (dataUtility.isTouchLow(ha_df,currIndex-2))) and not (dataUtility.isTouchLow(ha_df,currIndex) ):
-        return True
-    return False
+        return [True,"see currentdate"]
+    return [False,"see currentdate"]
 
 def bodyTouch(ha_df,currIndex,ma):
      if (float(ha_df.at[currIndex, ma])>float(ha_df.at[currIndex, 'open']) and float(ha_df.at[currIndex, ma]) < float(ha_df.at[currIndex, 'close']) and "GGG"==dataUtility.findCandleType(ha_df,currIndex-2)+dataUtility.findCandleType(ha_df,currIndex-1)+dataUtility.findCandleType(ha_df,currIndex) ):
@@ -56,9 +56,9 @@ def TopGainer(df,currIndex,percentage):
     return False
 
 def RSAADX(df,currentIndex):
-    if int(df.at[currentIndex, 'rsi2']) <25 and int(df.at[currentIndex, 'adx'])>20 :
-        return True
-    return False
+    if int(df.at[currentIndex, 'rsi2']) <25 and int(df.at[currentIndex, 'adx'])>20  and not int(df.at[currentIndex-1, 'rsi2']) <25 and int(df.at[currentIndex-1, 'adx'])>20  :
+        return [True,"see currentdate"]
+    return [False,"nop"]
 
 def findTrend(df , index , length ,correction):
     HH=df.at[index-length, 'close']
@@ -121,7 +121,7 @@ def trianglePattern(df,index,length,correction):
         if i==index:
             if PH!=-1 and  float(df.at[PH, 'high'])<float(df.at[index, 'close']) and  not float(df.at[PH, 'high'])<float(df.at[index-1, 'close']):
                 #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p"),Pattern)
-                return True
+                return [True,datetime.fromtimestamp(int(df.at[PH, 'date']),IST).strftime("%b %d %Y %I:%M%p")]
         if i<index-2:
             
             if df.at[i-2, 'candle']+df.at[i-1, 'candle']+df.at[i, 'candle']+df.at[i+1, 'candle']+df.at[i+2, 'candle']=="GGRRR" :
@@ -129,7 +129,7 @@ def trianglePattern(df,index,length,correction):
                 Pattern=Pattern+"H"
             if df.at[i-2, 'candle']+df.at[i-1, 'candle']+df.at[i, 'candle']+df.at[i+1, 'candle']+df.at[i+2, 'candle']=="RRGGG" :
                 Pattern=Pattern+"L"
-    return False
+    return [False,"nop"]
 
 def PDCB(df,index):
     date=datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%a")
@@ -152,13 +152,14 @@ def PDCB(df,index):
 
 def checkPDCB(df,index,orginalIndex):
     high=0.00
-    predate=datetime.fromtimestamp(int(df.at[index+4, 'date']),IST).strftime("%a")
+    predate=datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p")
+    predateend=datetime.fromtimestamp(int(df.at[index+4, 'date']),IST).strftime("%b %d %Y %I:%M%p")
     for i in range(index,index+5):
         if float(df.at[i, 'high'])>high:
             high=float(df.at[i, 'high'])
-    if high<float(df.at[orginalIndex, 'close']):
-        return True
-    return False
+    if high<float(df.at[orginalIndex, 'close']) and not high<float(df.at[orginalIndex-1, 'close']):
+        return [True,predate+" "+predateend]
+    return [False,predate+" "+predateend]
 
 
 
