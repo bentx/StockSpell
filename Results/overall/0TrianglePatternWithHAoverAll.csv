@@ -19,7 +19,7 @@ BASF,TrianglePatternWithHA,4,3
 BATAINDIA,TrianglePatternWithHA,1,0
 BAYERCROP,TrianglePatternWithHA,4,1
 BERGEPAINT,TrianglePatternWithHA,4,0
-BBL,TrianglePatternWithHA,10,2
+BBL,TrianglePatternWithHA,10,3
 BHARATFORG,TrianglePatternWithHA,5,2
 BHARATGEAR,TrianglePatternWithHA,5,2
 BIRLACORPN,TrianglePatternWithHA,5,2
@@ -32,7 +32,7 @@ ABBOTINDIA,TrianglePatternWithHA,4,0
 BORORENEW,TrianglePatternWithHA,1,0
 BRITANNIA,TrianglePatternWithHA,7,0
 CESC,TrianglePatternWithHA,3,1
-OAL,TrianglePatternWithHA,3,1
+OAL,TrianglePatternWithHA,2,1
 GRAPHITE,TrianglePatternWithHA,4,0
 CARBORUNIV,TrianglePatternWithHA,7,4
 CEATLTD,TrianglePatternWithHA,4,2
@@ -55,7 +55,7 @@ DEEPAKFERT,TrianglePatternWithHA,3,2
 DEEPAKNTR,TrianglePatternWithHA,7,2
 DCW,TrianglePatternWithHA,9,2
 EIDPARRY,TrianglePatternWithHA,6,1
-PGHL,TrianglePatternWithHA,5,0
+PGHL,TrianglePatternWithHA,6,0
 EIHOTEL,TrianglePatternWithHA,3,2
 EICHERMOT,TrianglePatternWithHA,7,3
 ELECON,TrianglePatternWithHA,7,3
@@ -139,7 +139,7 @@ MAHSCOOTER,TrianglePatternWithHA,5,4
 MANGLMCEM,TrianglePatternWithHA,4,2
 MANGCHEFER,TrianglePatternWithHA,4,0
 MFSL,TrianglePatternWithHA,4,0
-BOSCHLTD,TrianglePatternWithHA,3,0
+BOSCHLTD,TrianglePatternWithHA,4,0
 MODIRUBBER,TrianglePatternWithHA,1,0
 PENINLAND,TrianglePatternWithHA,5,1
 MRF,TrianglePatternWithHA,4,2
@@ -169,12 +169,13 @@ REVATHI,TrianglePatternWithHA,6,2
 PGHH,TrianglePatternWithHA,3,2
 VEDL,TrianglePatternWithHA,9,5
 SESHAPAPER,TrianglePatternWithHA,7,1
+SHALPAINTS,TrianglePatternWithHA,3,1
 SHREECEM,TrianglePatternWithHA,5,2
 SHREDIGCEM,TrianglePatternWithHA,5,1
 SRF,TrianglePatternWithHA,2,0
 SIEMENS,TrianglePatternWithHA,10,4
 SIYSIL,TrianglePatternWithHA,5,1
-SOMANYCERA,TrianglePatternWithHA,3,0
+SOMANYCERA,TrianglePatternWithHA,3,1
 SPIC,TrianglePatternWithHA,5,1
 TVSSRICHAK,TrianglePatternWithHA,7,3
 SIL,TrianglePatternWithHA,4,2
@@ -196,7 +197,7 @@ THOMASCOOK,TrianglePatternWithHA,8,4
 TINPLATE,TrianglePatternWithHA,7,4
 TATASTEEL,TrianglePatternWithHA,5,3
 TIL,TrianglePatternWithHA,2,0
-CHOLAHLDNG,TrianglePatternWithHA,5,2
+CHOLAHLDNG,TrianglePatternWithHA,6,2
 UNICHEMLAB,TrianglePatternWithHA,6,3
 EVEREADY,TrianglePatternWithHA,2,1
 UNIVCABLES,TrianglePatternWithHA,13,3
@@ -215,7 +216,7 @@ AUTOAXLES,TrianglePatternWithHA,6,0
 ALEMBICLTD,TrianglePatternWithHA,5,0
 ALKYLAMINE,TrianglePatternWithHA,6,2
 APOLLOHOSP,TrianglePatternWithHA,5,0
-BINDALAGRO,TrianglePatternWithHA,4,0
+BINDALAGRO,TrianglePatternWithHA,3,0
 DYNAMATECH,TrianglePatternWithHA,3,1
 GODFRYPHLP,TrianglePatternWithHA,5,2
 GRAUWEIL,TrianglePatternWithHA,5,0
@@ -224,7 +225,7 @@ NSIL,TrianglePatternWithHA,5,1
 JBFIND,TrianglePatternWithHA,5,0
 LYKALABS,TrianglePatternWithHA,5,1
 NESCO,TrianglePatternWithHA,7,5
-MARATHON,TrianglePatternWithHA,5,1
+MARATHON,TrianglePatternWithHA,4,0
 RSWM,TrianglePatternWithHA,4,2
 RICOAUTO,TrianglePatternWithHA,6,2
 PATANJALI,TrianglePatternWithHA,4,2
@@ -240,7 +241,7 @@ PKTEA,TrianglePatternWithHA,2,0
 SAKHTISUG,TrianglePatternWithHA,6,2
 TTKHLTCARE,TrianglePatternWithHA,5,0
 LUMAXIND,TrianglePatternWithHA,3,0
-ADORWELD,TrianglePatternWithHA,3,0
+ADORWELD,TrianglePatternWithHA,4,0
 ORICONENT,TrianglePatternWithHA,3,1
 SUDARSCHEM,TrianglePatternWithHA,4,1
 WINDMACHIN,TrianglePatternWithHA,7,1
@@ -261,6 +262,7 @@ FIBERWEB,TrianglePatternWithHA,3,0
 RAIN,TrianglePatternWithHA,6,0
 JINDALSAW,TrianglePatternWithHA,7,3
 SHANTIGEAR,TrianglePatternWithHA,6,1
+TAINWALCHM,TrianglePatternWithHA,6,1
 VHL,TrianglePatternWithHA,1,0
 KIRLOSIND,TrianglePatternWithHA,5,1
 SUBROS,TrianglePatternWithHA,4,2
@@ -283,13 +285,13 @@ GUJRAFFIA,TrianglePatternWithHA,4,1
 ORCHPHARMA,TrianglePatternWithHA,3,3
 HITECHCORP,TrianglePatternWithHA,4,0
 FOSECOIND,TrianglePatternWithHA,3,1
-CONTROLPR,TrianglePatternWithHA,5,0
+CONTROLPR,TrianglePatternWithHA,5,1
 ORIENTLTD,TrianglePatternWithHA,3,0
 RANASUG,TrianglePatternWithHA,2,1
 MPHASIS,TrianglePatternWithHA,8,0
 APCL,TrianglePatternWithHA,2,1
 SPICEJET,TrianglePatternWithHA,2,1
-TI,TrianglePatternWithHA,6,1
+TI,TrianglePatternWithHA,5,1
 DABUR,TrianglePatternWithHA,5,1
 CREST,TrianglePatternWithHA,3,0
 GANESHHOUC,TrianglePatternWithHA,7,3
@@ -310,7 +312,7 @@ IPCALAB,TrianglePatternWithHA,2,1
 ASAL,TrianglePatternWithHA,2,1
 HLEGLAS,TrianglePatternWithHA,2,1
 DOLATALGO,TrianglePatternWithHA,4,0
-ANIKINDS,TrianglePatternWithHA,4,0
+ANIKINDS,TrianglePatternWithHA,3,0
 INDBANK,TrianglePatternWithHA,5,1
 FEDERALBNK,TrianglePatternWithHA,7,2
 BPL,TrianglePatternWithHA,5,0
@@ -321,7 +323,7 @@ ARROWGREEN,TrianglePatternWithHA,3,1
 MMFL,TrianglePatternWithHA,4,1
 PODDARMENT,TrianglePatternWithHA,4,2
 AVANTIFEED,TrianglePatternWithHA,1,1
-CAPTRUST,TrianglePatternWithHA,3,1
+CAPTRUST,TrianglePatternWithHA,4,2
 RSSOFTWARE,TrianglePatternWithHA,3,0
 BUTTERFLY,TrianglePatternWithHA,3,0
 SANGHIIND,TrianglePatternWithHA,5,0
@@ -353,7 +355,7 @@ SDBL,TrianglePatternWithHA,10,1
 MIRZAINT,TrianglePatternWithHA,4,2
 TTKPRESTIG,TrianglePatternWithHA,3,1
 TFCILTD,TrianglePatternWithHA,9,4
-MHLXMIRU,TrianglePatternWithHA,3,1
+MHLXMIRU,TrianglePatternWithHA,4,1
 WEBELSOLAR,TrianglePatternWithHA,7,2
 SUNPHARMA,TrianglePatternWithHA,8,3
 KAMATHOTEL,TrianglePatternWithHA,4,2
@@ -396,7 +398,7 @@ CONFIPET,TrianglePatternWithHA,7,1
 MUTHOOTCAP,TrianglePatternWithHA,3,2
 PRSMJOHNSN,TrianglePatternWithHA,3,2
 BANARBEADS,TrianglePatternWithHA,6,1
-63MOONS,TrianglePatternWithHA,4,3
+63MOONS,TrianglePatternWithHA,5,2
 SEAMECLTD,TrianglePatternWithHA,2,1
 SARLAPOLY,TrianglePatternWithHA,5,2
 JSWSTEEL,TrianglePatternWithHA,6,4
@@ -411,7 +413,7 @@ STYLAMIND,TrianglePatternWithHA,5,0
 THEMISMED,TrianglePatternWithHA,5,0
 CCL,TrianglePatternWithHA,5,1
 SUVEN,TrianglePatternWithHA,5,1
-CLSEL,TrianglePatternWithHA,8,0
+CLSEL,TrianglePatternWithHA,9,0
 KOTHARIPRO,TrianglePatternWithHA,4,2
 LAOPALA,TrianglePatternWithHA,7,2
 GENUSPOWER,TrianglePatternWithHA,4,2
@@ -464,7 +466,7 @@ COCHINSHIP,TrianglePatternWithHA,4,3
 COASTCORP,TrianglePatternWithHA,4,2
 JKPAPER,TrianglePatternWithHA,3,1
 INTLCONV,TrianglePatternWithHA,5,0
-IMFA,TrianglePatternWithHA,7,4
+IMFA,TrianglePatternWithHA,7,5
 PSB,TrianglePatternWithHA,5,3
 PILANIINVS,TrianglePatternWithHA,5,0
 KTKBANK,TrianglePatternWithHA,4,2
@@ -492,7 +494,7 @@ EMAMILTD,TrianglePatternWithHA,8,0
 BYKE,TrianglePatternWithHA,4,1
 HISARMETAL,TrianglePatternWithHA,8,4
 ALMONDZ,TrianglePatternWithHA,2,0
-SHAKTIPUMP,TrianglePatternWithHA,5,1
+SHAKTIPUMP,TrianglePatternWithHA,4,2
 SIGIND,TrianglePatternWithHA,6,1
 JOCIL,TrianglePatternWithHA,4,0
 LAMBODHARA,TrianglePatternWithHA,5,0
@@ -513,7 +515,7 @@ APOLLOPIPE,TrianglePatternWithHA,4,2
 GALAXYSURF,TrianglePatternWithHA,3,0
 AHLUCONT,TrianglePatternWithHA,8,2
 PRAENG,TrianglePatternWithHA,5,1
-AGARIND,TrianglePatternWithHA,6,3
+AGARIND,TrianglePatternWithHA,7,3
 CYBERTECH,TrianglePatternWithHA,4,1
 LCCINFOTEC,TrianglePatternWithHA,3,1
 MODISONLTD,TrianglePatternWithHA,4,1
@@ -528,7 +530,7 @@ SHREERAMA,TrianglePatternWithHA,2,2
 COMPUSOFT,TrianglePatternWithHA,5,0
 WOCKPHARMA,TrianglePatternWithHA,3,0
 TIPSINDLTD,TrianglePatternWithHA,2,1
-TVSMOTOR,TrianglePatternWithHA,7,4
+TVSMOTOR,TrianglePatternWithHA,8,4
 MEGASOFT,TrianglePatternWithHA,2,0
 BFUTILITIE,TrianglePatternWithHA,3,0
 APTECHT,TrianglePatternWithHA,4,4
@@ -551,7 +553,7 @@ GPPL,TrianglePatternWithHA,5,3
 UNOMINDA,TrianglePatternWithHA,4,1
 APLAPOLLO,TrianglePatternWithHA,8,4
 GAIL,TrianglePatternWithHA,6,0
-LINC,TrianglePatternWithHA,7,0
+LINC,TrianglePatternWithHA,8,0
 PANACEABIO,TrianglePatternWithHA,4,0
 ISEC,TrianglePatternWithHA,4,1
 ARIES,TrianglePatternWithHA,6,4
@@ -594,11 +596,11 @@ MGL,TrianglePatternWithHA,7,1
 CYBERMEDIA,TrianglePatternWithHA,2,1
 AJANTPHARM,TrianglePatternWithHA,4,1
 ARCHIES,TrianglePatternWithHA,6,1
-CYIENT,TrianglePatternWithHA,4,3
-GOLDTECH,TrianglePatternWithHA,3,1
+CYIENT,TrianglePatternWithHA,5,3
+GOLDTECH,TrianglePatternWithHA,3,2
 NITCO,TrianglePatternWithHA,5,0
 NEWGEN,TrianglePatternWithHA,4,1
-MANAKSIA,TrianglePatternWithHA,4,0
+MANAKSIA,TrianglePatternWithHA,4,1
 MOIL,TrianglePatternWithHA,7,2
 GMDCLTD,TrianglePatternWithHA,7,2
 SUZLON,TrianglePatternWithHA,3,1
@@ -607,6 +609,7 @@ BHAGCHEM,TrianglePatternWithHA,3,2
 TVSELECT,TrianglePatternWithHA,4,1
 MIDHANI,TrianglePatternWithHA,5,1
 SUBEXLTD,TrianglePatternWithHA,5,1
+CALSOFT,TrianglePatternWithHA,5,1
 GATI,TrianglePatternWithHA,7,2
 JPPOWER,TrianglePatternWithHA,5,4
 RUPA,TrianglePatternWithHA,2,0
@@ -675,13 +678,13 @@ RECLTD,TrianglePatternWithHA,5,4
 LTI,TrianglePatternWithHA,3,2
 KAVVERITEL,TrianglePatternWithHA,6,0
 MHRIL,TrianglePatternWithHA,9,1
-PERSISTENT,TrianglePatternWithHA,6,2
-SONACOMS,TrianglePatternWithHA,6,0
+PERSISTENT,TrianglePatternWithHA,6,3
+SONACOMS,TrianglePatternWithHA,7,0
 ADSL,TrianglePatternWithHA,5,0
 TORNTPOWER,TrianglePatternWithHA,7,3
 NAUKRI,TrianglePatternWithHA,6,0
 MPSLTD,TrianglePatternWithHA,3,1
-LYPSAGEMS,TrianglePatternWithHA,6,2
+LYPSAGEMS,TrianglePatternWithHA,5,1
 MALLCOM,TrianglePatternWithHA,1,1
 ALKEM,TrianglePatternWithHA,3,2
 VARDHACRLC,TrianglePatternWithHA,5,0
@@ -714,7 +717,7 @@ ISFT,TrianglePatternWithHA,2,1
 MAHLIFE,TrianglePatternWithHA,3,1
 TAJGVK,TrianglePatternWithHA,4,0
 NUVOCO,TrianglePatternWithHA,4,1
-ZYDUSLIFE,TrianglePatternWithHA,5,3
+ZYDUSLIFE,TrianglePatternWithHA,6,3
 GEPIL,TrianglePatternWithHA,3,1
 DSSL,TrianglePatternWithHA,3,0
 MUKTAARTS,TrianglePatternWithHA,2,1
@@ -723,14 +726,14 @@ DATAMATICS,TrianglePatternWithHA,4,0
 DIVISLAB,TrianglePatternWithHA,5,1
 STEELXIND,TrianglePatternWithHA,3,0
 ZENTEC,TrianglePatternWithHA,4,1
-TTML,TrianglePatternWithHA,3,1
+TTML,TrianglePatternWithHA,2,1
 BSE,TrianglePatternWithHA,3,1
 HDFCAMC,TrianglePatternWithHA,5,2
 FCSSOFT,TrianglePatternWithHA,3,2
 ADANIPORTS,TrianglePatternWithHA,3,3
 AXISCADES,TrianglePatternWithHA,7,2
 BALAJITELE,TrianglePatternWithHA,4,1
-WELENT,TrianglePatternWithHA,3,1
+WELENT,TrianglePatternWithHA,2,1
 STLTECH,TrianglePatternWithHA,4,0
 CIGNITITEC,TrianglePatternWithHA,6,2
 GODREJCP,TrianglePatternWithHA,7,2
@@ -742,7 +745,7 @@ ROHLTD,TrianglePatternWithHA,6,2
 RAILTEL,TrianglePatternWithHA,9,2
 JAGRAN,TrianglePatternWithHA,6,2
 SADBHAV,TrianglePatternWithHA,1,0
-PONNIERODE,TrianglePatternWithHA,7,2
+PONNIERODE,TrianglePatternWithHA,8,3
 IDFC,TrianglePatternWithHA,10,3
 GULPOLY,TrianglePatternWithHA,5,2
 COMPINFO,TrianglePatternWithHA,6,1
@@ -760,7 +763,7 @@ ORISSAMINE,TrianglePatternWithHA,4,1
 NIFTYBEES,TrianglePatternWithHA,3,1
 BAGFILMS,TrianglePatternWithHA,1,0
 GMRINFRA,TrianglePatternWithHA,5,4
-IDEA,TrianglePatternWithHA,5,0
+IDEA,TrianglePatternWithHA,6,0
 VIPCLOTHNG,TrianglePatternWithHA,4,1
 UBL,TrianglePatternWithHA,4,1
 ISMTLTD,TrianglePatternWithHA,3,0
@@ -785,7 +788,7 @@ NECLIFE,TrianglePatternWithHA,2,0
 UTTAMSUGAR,TrianglePatternWithHA,5,0
 SUMICHEM,TrianglePatternWithHA,5,0
 FORTIS,TrianglePatternWithHA,5,0
-TVTODAY,TrianglePatternWithHA,4,2
+TVTODAY,TrianglePatternWithHA,5,2
 GSPL,TrianglePatternWithHA,7,1
 NECCLTD,TrianglePatternWithHA,3,1
 RITES,TrianglePatternWithHA,8,1
@@ -809,12 +812,12 @@ INDOWIND,TrianglePatternWithHA,6,4
 ALLSEC,TrianglePatternWithHA,5,1
 FSL,TrianglePatternWithHA,8,1
 TEAMLEASE,TrianglePatternWithHA,3,2
-RKFORGE,TrianglePatternWithHA,7,5
+RKFORGE,TrianglePatternWithHA,8,7
 JINDALPHOT,TrianglePatternWithHA,5,0
 HTMEDIA,TrianglePatternWithHA,4,2
 ULTRACEMCO,TrianglePatternWithHA,5,2
 GULFPETRO,TrianglePatternWithHA,4,2
-COFORGE,TrianglePatternWithHA,5,2
+COFORGE,TrianglePatternWithHA,5,3
 MCLEODRUSS,TrianglePatternWithHA,4,1
 EKC,TrianglePatternWithHA,1,0
 BEDMUTHA,TrianglePatternWithHA,6,0
@@ -876,7 +879,7 @@ JHS,TrianglePatternWithHA,2,0
 ALLCARGO,TrianglePatternWithHA,8,3
 ACE,TrianglePatternWithHA,6,1
 HOVS,TrianglePatternWithHA,6,0
-VOLTAMP,TrianglePatternWithHA,5,1
+VOLTAMP,TrianglePatternWithHA,6,1
 RGL,TrianglePatternWithHA,1,0
 GLOBALVECT,TrianglePatternWithHA,4,1
 CTE,TrianglePatternWithHA,4,1
@@ -924,7 +927,7 @@ IBREALEST,TrianglePatternWithHA,5,2
 CRAFTSMAN,TrianglePatternWithHA,6,1
 MAGNUM,TrianglePatternWithHA,4,2
 GSS,TrianglePatternWithHA,5,1
-MANINFRA,TrianglePatternWithHA,3,1
+MANINFRA,TrianglePatternWithHA,4,1
 RUSHIL,TrianglePatternWithHA,4,2
 KSCL,TrianglePatternWithHA,6,1
 KPRMILL,TrianglePatternWithHA,5,0
@@ -946,7 +949,7 @@ PFS,TrianglePatternWithHA,6,1
 KHADIM,TrianglePatternWithHA,3,0
 CORDSCABLE,TrianglePatternWithHA,8,2
 ECLERX,TrianglePatternWithHA,5,0
-BRIGADE,TrianglePatternWithHA,2,0
+BRIGADE,TrianglePatternWithHA,3,0
 JKIL,TrianglePatternWithHA,3,1
 ONMOBILE,TrianglePatternWithHA,2,0
 KNRCON,TrianglePatternWithHA,4,1
@@ -988,13 +991,13 @@ ROLEXRINGS,TrianglePatternWithHA,6,2
 WELINV,TrianglePatternWithHA,3,1
 SREEL,TrianglePatternWithHA,4,1
 VARROC,TrianglePatternWithHA,2,0
-DLINKINDIA,TrianglePatternWithHA,4,2
+DLINKINDIA,TrianglePatternWithHA,5,2
 AHLEAST,TrianglePatternWithHA,2,1
 INDIGO,TrianglePatternWithHA,5,0
 BARBEQUE,TrianglePatternWithHA,3,2
 NAZARA,TrianglePatternWithHA,5,2
 SPECIALITY,TrianglePatternWithHA,7,3
-EXPLEOSOL,TrianglePatternWithHA,4,2
+EXPLEOSOL,TrianglePatternWithHA,3,2
 KIRLOSENG,TrianglePatternWithHA,4,1
 SHARIABEES,TrianglePatternWithHA,6,3
 PCJEWELLER,TrianglePatternWithHA,4,1
@@ -1003,7 +1006,7 @@ MEP,TrianglePatternWithHA,3,0
 SPANDANA,TrianglePatternWithHA,6,1
 GNA,TrianglePatternWithHA,8,3
 VMART,TrianglePatternWithHA,4,2
-MTARTECH,TrianglePatternWithHA,3,1
+MTARTECH,TrianglePatternWithHA,4,1
 SPAL,TrianglePatternWithHA,3,0
 TARSONS,TrianglePatternWithHA,2,0
 ARTEMISMED,TrianglePatternWithHA,5,2
@@ -1016,7 +1019,7 @@ KIMS,TrianglePatternWithHA,8,1
 POWERMECH,TrianglePatternWithHA,3,2
 SHREEPUSHK,TrianglePatternWithHA,1,0
 RTNPOWER,TrianglePatternWithHA,1,0
-UJJIVAN,TrianglePatternWithHA,5,3
+UJJIVAN,TrianglePatternWithHA,6,3
 DUCON,TrianglePatternWithHA,3,0
 SETFGOLD,TrianglePatternWithHA,4,2
 THANGAMAYL,TrianglePatternWithHA,4,2
@@ -1026,7 +1029,7 @@ BFINVEST,TrianglePatternWithHA,3,1
 AKASH,TrianglePatternWithHA,1,0
 GRINFRA,TrianglePatternWithHA,1,0
 SHARDACROP,TrianglePatternWithHA,1,0
-KRISHANA,TrianglePatternWithHA,6,2
+KRISHANA,TrianglePatternWithHA,6,3
 LAXMICOT,TrianglePatternWithHA,5,0
 EMMBI,TrianglePatternWithHA,3,1
 GRAVITA,TrianglePatternWithHA,5,2
@@ -1051,7 +1054,7 @@ DBL,TrianglePatternWithHA,4,3
 DHUNINV,TrianglePatternWithHA,3,0
 TECHNOE,TrianglePatternWithHA,5,3
 SIS,TrianglePatternWithHA,5,1
-EROSMEDIA,TrianglePatternWithHA,4,1
+EROSMEDIA,TrianglePatternWithHA,5,1
 ZEELEARN,TrianglePatternWithHA,4,3
 OBEROIRLTY,TrianglePatternWithHA,3,1
 PGEL,TrianglePatternWithHA,6,1
@@ -1096,6 +1099,7 @@ KRIDHANINF,TrianglePatternWithHA,3,1
 ONELIFECAP,TrianglePatternWithHA,5,1
 THOMASCOTT,TrianglePatternWithHA,3,1
 MOM100,TrianglePatternWithHA,6,1
+NAGAFERT,TrianglePatternWithHA,3,0
 UJAAS,TrianglePatternWithHA,3,0
 LEMONTREE,TrianglePatternWithHA,7,2
 TREEHOUSE,TrianglePatternWithHA,2,2
@@ -1113,7 +1117,7 @@ BSLGOLDETF,TrianglePatternWithHA,10,0
 INDOTHAI,TrianglePatternWithHA,3,1
 LALPATHLAB,TrianglePatternWithHA,2,0
 MBAPL,TrianglePatternWithHA,7,0
-MTEDUCARE,TrianglePatternWithHA,2,0
+MTEDUCARE,TrianglePatternWithHA,1,0
 DELPHIFX,TrianglePatternWithHA,5,4
 POLICYBZR,TrianglePatternWithHA,2,1
 BSLNIFTY,TrianglePatternWithHA,2,1
@@ -1134,7 +1138,7 @@ THEJO,TrianglePatternWithHA,5,1
 ZUARI,TrianglePatternWithHA,3,0
 KALYANKJIL,TrianglePatternWithHA,7,2
 BECTORFOOD,TrianglePatternWithHA,8,4
-THYROCARE,TrianglePatternWithHA,3,1
+THYROCARE,TrianglePatternWithHA,2,1
 HCG,TrianglePatternWithHA,4,2
 INDIGOPNTS,TrianglePatternWithHA,2,0
 RADIOCITY,TrianglePatternWithHA,3,0
@@ -1152,11 +1156,11 @@ EQUITASBNK,TrianglePatternWithHA,5,2
 FLFL,TrianglePatternWithHA,1,0
 ICICINF100,TrianglePatternWithHA,11,2
 GREENLAM,TrianglePatternWithHA,4,1
-GUJGASLTD,TrianglePatternWithHA,6,2
+GUJGASLTD,TrianglePatternWithHA,7,2
 DNAMEDIA,TrianglePatternWithHA,4,1
 INOXWIND,TrianglePatternWithHA,2,2
 NATHBIOGEN,TrianglePatternWithHA,4,1
-AGRITECH,TrianglePatternWithHA,6,1
+AGRITECH,TrianglePatternWithHA,6,0
 DTIL,TrianglePatternWithHA,3,1
 BCP,TrianglePatternWithHA,1,0
 SIMBHALS,TrianglePatternWithHA,5,0
@@ -1169,7 +1173,7 @@ LTTS,TrianglePatternWithHA,5,2
 NH,TrianglePatternWithHA,4,1
 PARAGMILK,TrianglePatternWithHA,1,1
 SHYAMMETL,TrianglePatternWithHA,7,3
-NAVKARCORP,TrianglePatternWithHA,4,1
+NAVKARCORP,TrianglePatternWithHA,3,1
 GULFOILLUB,TrianglePatternWithHA,6,2
 VISHAL,TrianglePatternWithHA,1,0
 AAVAS,TrianglePatternWithHA,6,2
@@ -1219,9 +1223,9 @@ ERIS,TrianglePatternWithHA,4,0
 HINDCON,TrianglePatternWithHA,4,1
 ADANITRANS,TrianglePatternWithHA,3,2
 BIGBLOC,TrianglePatternWithHA,7,1
-NV20BEES,TrianglePatternWithHA,8,0
+NV20BEES,TrianglePatternWithHA,7,0
 PAR,TrianglePatternWithHA,3,1
-SAKAR,TrianglePatternWithHA,6,1
+SAKAR,TrianglePatternWithHA,5,1
 SETFNIF50,TrianglePatternWithHA,2,1
 QUICKHEAL,TrianglePatternWithHA,3,1
 BHARATWIRE,TrianglePatternWithHA,4,0
@@ -1276,7 +1280,7 @@ MAHESHWARI,TrianglePatternWithHA,5,0
 RKEC,TrianglePatternWithHA,7,1
 PSPPROJECT,TrianglePatternWithHA,5,0
 GTPL,TrianglePatternWithHA,5,3
-GLOBAL,TrianglePatternWithHA,2,0
+GLOBAL,TrianglePatternWithHA,3,0
 EUROBOND,TrianglePatternWithHA,1,0
 UJJIVANSFB,TrianglePatternWithHA,4,2
 SALASAR,TrianglePatternWithHA,4,3
@@ -1326,7 +1330,7 @@ TOUCHWOOD,TrianglePatternWithHA,5,3
 AJOONI,TrianglePatternWithHA,1,0
 SRPL,TrianglePatternWithHA,3,1
 BANKA,TrianglePatternWithHA,6,2
-SOUTHWEST,TrianglePatternWithHA,3,1
+SOUTHWEST,TrianglePatternWithHA,3,2
 MITTAL,TrianglePatternWithHA,4,1
 BCONCEPTS,TrianglePatternWithHA,7,3
 MACPOWER,TrianglePatternWithHA,5,1
@@ -1384,7 +1388,7 @@ RPSGVENT,TrianglePatternWithHA,2,0
 NEOGEN,TrianglePatternWithHA,6,1
 ANUP,TrianglePatternWithHA,6,1
 MAN50ETF,TrianglePatternWithHA,6,2
-KPIGREEN,TrianglePatternWithHA,8,0
+KPIGREEN,TrianglePatternWithHA,7,0
 SBIETFQLTY,TrianglePatternWithHA,7,0
 ABSLNN50ET,TrianglePatternWithHA,1,0
 NETF,TrianglePatternWithHA,8,2
@@ -1407,7 +1411,7 @@ ICICIM150,TrianglePatternWithHA,4,0
 LIKHITHA,TrianglePatternWithHA,7,2
 SUVENPHAR,TrianglePatternWithHA,4,1
 MANXT50,TrianglePatternWithHA,6,0
-NDRAUTO,TrianglePatternWithHA,5,0
+NDRAUTO,TrianglePatternWithHA,5,1
 KSOLVES,TrianglePatternWithHA,5,1
 MAXIND,TrianglePatternWithHA,5,1
 ITBEES,TrianglePatternWithHA,7,1
@@ -1436,7 +1440,7 @@ AXISBPSETF,TrianglePatternWithHA,6,0
 AXISHCETF,TrianglePatternWithHA,5,0
 ICICIPHARM,TrianglePatternWithHA,7,1
 MAFANG,TrianglePatternWithHA,8,4
-BEWLTD,TrianglePatternWithHA,2,1
+BEWLTD,TrianglePatternWithHA,2,2
 MOL,TrianglePatternWithHA,3,0
 VIJAYA,TrianglePatternWithHA,6,3
 HPAL,TrianglePatternWithHA,2,0
@@ -1448,7 +1452,7 @@ GOCOLORS,TrianglePatternWithHA,2,0
 MASPTOP50,TrianglePatternWithHA,2,0
 RATEGAIN,TrianglePatternWithHA,2,0
 DKEGL,TrianglePatternWithHA,2,1
-JAINAM,TrianglePatternWithHA,3,1
+JAINAM,TrianglePatternWithHA,3,2
 DYNAMIC,TrianglePatternWithHA,2,2
 KOTYARK,TrianglePatternWithHA,2,1
 HEALTHY,TrianglePatternWithHA,2,0
