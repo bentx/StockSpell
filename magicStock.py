@@ -79,6 +79,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 # testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
                 testResult.append(["TrianglePatternWithHA",secretIngredient.trianglePattern(ha_dfList[idx],index,120,3),index+1])
                 testResult.append(["PDCB",secretIngredient.PDCB(df,index),index+1])
+                testResult.append(["PP",secretIngredient.PP(ha_dfList[idx],index),index+1])
 
 
 
@@ -86,11 +87,15 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
 
 
 
+                pattern=""
+                for result in testResult:
+                    if result[1][0]:
+                        pattern+=result[0]
 
                 for result in testResult:
                     if result[1][0]:
                       if( index>df.shape[0]-2 ):
-                            dataUtility.storeInFile("./Results/today/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,dataUtility.findRange(WVA1,df.at[index, '1WVA']),dataUtility.findRange(ADX,df.at[index, 'adx']),dataUtility.findRange(RSI,df.at[index, 'rsi']),result[1][1]])
+                            dataUtility.storeInFile("./Results/today/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,dataUtility.findRange(WVA1,df.at[index, '1WVA']),dataUtility.findRange(ADX,df.at[index, 'adx']),dataUtility.findRange(RSI,df.at[index, 'rsi']),result[1][1],pattern])
 
                       else:
                         close=df.at[result[2], "open"]
@@ -102,7 +107,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                            # dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,float(close)-float(open),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),open])
                         else:
                              #logger.info(str(datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).isoformat())+"|"+result[0]+"|"+stock+"|"+stockCODE+"|"+str(df.at[result[2], '1WVA'])+"|"+str(df.at[result[2], 'up'])+"|"+str(df.at[result[2], 'down'])+"|"+str(df.at[result[2], 'middle'])+"|"+str(df.at[result[2], 'adx'])+"|"+str(df.at[result[2], 'rsi'])+"|"+str(float(day1)-float(close))+"|"+str(float(day2)-float(close))+"|"+str(float(day3)-float(close))+"|"+str(float(day4)-float(close))+"|"+str(float(day5)-float(close))+"|"+str(float(day6)-float(close))+"|"+str(float(day7)-float(close))+"|"+str(float(day8)-float(close))+"|"+str(float(day9)-float(close))+"|"+str(float(day10)-float(close)))
-                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,df.at[index, '1WVA'],df.at[index, 'adx'],df.at[index, 'rsi'],float(close),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close),result[1][1]])
+                             dataUtility.storeInFile("./Results/details/"+result[0]+str(idx)+"data.csv",[datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE,df.at[index, '1WVA'],df.at[index, 'adx'],df.at[index, 'rsi'],float(close),float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close),result[1][1],pattern])
 
                         
                         #print([datetime.fromtimestamp(int(df.at[result[2], 'date']),IST).strftime("%b %d %Y %I:%M%p"),result[0],stock,stockCODE,idx,close,float(day1)-float(close),float(day2)-float(close),float(day3)-float(close),float(day4)-float(close),float(day5)-float(close),float(day6)-float(close),float(day7)-float(close),float(day8)-float(close),float(day9)-float(close),float(day10)-float(close)])
@@ -146,47 +151,49 @@ def WatchStockMarket():
 
     
     for row in csv_reader:
-        try:
-            print(row[1])
-            stockCODE=row[0]
-            stock=row[1]
-            timeLine=[["1D",365]]
-            if not os.path.isfile("./DFState/data"+stockCODE+timeLine[0][0]+".pkl"):
-                dataList=dataUtility.getStockData(stockCODE,timeLine)
-                [dfList,ha_dfList]=dataUtility.preProcess(dataList,stockCODE)
+        swingStock=dataUtility.getSwingStock()
+        if row[1] in swingStock:
+            try:
+                print(row[1])
+                stockCODE=row[0]
+                stock=row[1]
+                timeLine=[["1D",365]]
+                if not os.path.isfile("./DFState/data"+stockCODE+timeLine[0][0]+".pkl"):
+                    dataList=dataUtility.getStockData(stockCODE,timeLine)
+                    [dfList,ha_dfList]=dataUtility.preProcess(dataList,stockCODE)
 
-                if(int(dfList[0].at[0, 'date'])<1627410600):#To remove the unwanted 2000 dates
-                     print(stockCODE)
-                     dataUtility.storeInFile("./Results/Scam/scam.csv",[dfList[0].index[0].strftime("%Y-%m-%d %H:%M:%S"),stock,stockCODE])
-                     continue
-                getStatistics(stockCODE,stock,dfList,ha_dfList)
+                    if(int(dfList[0].at[0, 'date'])<1627410600):#To remove the unwanted 2000 dates
+                        print(stockCODE)
+                        dataUtility.storeInFile("./Results/Scam/scam.csv",[dfList[0].index[0].strftime("%Y-%m-%d %H:%M:%S"),stock,stockCODE])
+                        continue
+                    getStatistics(stockCODE,stock,dfList,ha_dfList)
 
-                dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
-                df=dfList[0][['date','close']]
-                df=df.set_index('date')
-                df.rename(columns = {'close':row[0]}, inplace = True)
-                rootdf=pd.concat([rootdf, df], axis=1) 
-            else:
-                [dfList,ha_dfList]=dataUtility.getPreLoadedData(timeLine,stockCODE)
-                getStatistics(stockCODE,stock,dfList,ha_dfList) 
+                    dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
+                    df=dfList[0][['date','close']]
+                    df=df.set_index('date')
+                    df.rename(columns = {'close':row[0]}, inplace = True)
+                    rootdf=pd.concat([rootdf, df], axis=1) 
+                else:
+                    [dfList,ha_dfList]=dataUtility.getPreLoadedData(timeLine,stockCODE)
+                    getStatistics(stockCODE,stock,dfList,ha_dfList) 
 
-                dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
-                df=dfList[0][['date','close']]
-                df=df.set_index('date')
-                df.rename(columns = {'close':row[0]}, inplace = True)
-                rootdf=pd.concat([rootdf, df], axis=1)
-            # for idx in output:
-            #     for stratagies in output[idx]:
-            #         dataUtility.storeInFile("./Results/StockWiseStratagy/OverALLdata.csv",[row[0],row[1],str(idx)+stratagies,output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3],str(output[idx][stratagies][3]-output[idx][stratagies][2])])
+                    dfList[0]['date'] = pd.to_datetime(dfList[0]['date'],unit='s')
+                    df=dfList[0][['date','close']]
+                    df=df.set_index('date')
+                    df.rename(columns = {'close':row[0]}, inplace = True)
+                    rootdf=pd.concat([rootdf, df], axis=1)
+                # for idx in output:
+                #     for stratagies in output[idx]:
+                #         dataUtility.storeInFile("./Results/StockWiseStratagy/OverALLdata.csv",[row[0],row[1],str(idx)+stratagies,output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3],str(output[idx][stratagies][3]-output[idx][stratagies][2])])
 
-            #         if msg.get(str(idx)+stratagies):
-            #             msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
-            #         else:
-            #             msg[str(idx)+stratagies]=[]
-            #             msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
-            line_count+= 1
-        except Exception as e:
-             print("Oops!", e, "occurred.")
+                #         if msg.get(str(idx)+stratagies):
+                #             msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
+                #         else:
+                #             msg[str(idx)+stratagies]=[]
+                #             msg[str(idx)+stratagies].append([output[idx][stratagies][0],output[idx][stratagies][1],output[idx][stratagies][2],output[idx][stratagies][3]])
+                line_count+= 1
+            except Exception as e:
+                print("Oops!", e, "occurred.")
     #top10.getTopScorers(rootdf)
     #top10.getTopAmongStratagy(rootdf)
     print(f'Processed {line_count} lines.')

@@ -38,6 +38,52 @@ def MovingAverage(df):
     df['MA5'] = df['close'].rolling(5).mean()
     return df
 
+def pivotePoints(data_ohlc):
+    data_ohlc['pivote'] = (data_ohlc['preMonthHigh'] + data_ohlc['preMonthLow'] + data_ohlc['preMonthClose'])/3
+    data_ohlc['R1'] = (2*data_ohlc['pivote']) - data_ohlc['preMonthLow']
+    data_ohlc['S1'] = (2*data_ohlc['pivote']) - data_ohlc['preMonthHigh']
+    data_ohlc['R2'] = (data_ohlc['pivote']) + (data_ohlc['preMonthHigh'] - data_ohlc['preMonthLow'])
+    data_ohlc['S2'] = (data_ohlc['pivote']) - (data_ohlc['preMonthHigh'] - data_ohlc['preMonthLow'])
+    data_ohlc['R3'] = (data_ohlc['R1']) + (data_ohlc['preMonthHigh'] - data_ohlc['preMonthLow'])
+    data_ohlc['S3'] = (data_ohlc['S1']) - (data_ohlc['preMonthHigh'] - data_ohlc['preMonthLow'])
+    data_ohlc['R4'] = (data_ohlc['R3']) + (data_ohlc['R2'] - data_ohlc['R1'])
+    data_ohlc['S4'] = (data_ohlc['S3']) - (data_ohlc['S1'] - data_ohlc['S2'])
+    return data_ohlc
+
+def unix_to_iso(unix_timestamp):
+    return datetime.fromtimestamp(unix_timestamp).strftime("%d-%b-%Y")
+
+def getValWithKey(year,month,df2,pos):
+    try:
+        key=0
+        if(month==1):
+            key=(year-1,12)
+        else:
+            key=(year,month-1)
+        return df2.loc[key][pos]
+    except KeyError as e:
+           return 0
+
+
+
+def convertToMonthly(df):
+    IST = pytz.timezone('Asia/Kolkata')
+    df['Timestamp'] = df['date'].apply(unix_to_iso)
+    # Converting date to pandas datetime format
+    df['DateTime'] = pd.to_datetime(df['Timestamp'])
+    # Getting month number
+    df['Month_Number'] = df['DateTime'].dt.month
+    # Getting year. month is common across years (as if you dont know :) )to we need to create unique index by using year and month
+    df['Year'] = df['DateTime'].dt.year
+
+    # Grouping based on required values
+    df2 = df.groupby(['Year','Month_Number']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
+    df['preMonthOpen'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'open'),axis=1)
+    df['preMonthClose'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'close'),axis=1)
+    df['preMonthLow'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'low'),axis=1)
+    df['preMonthHigh'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'high'),axis=1)
+    return df
+    
 def AverageVolume(df) :
     df['av']  = df['volume'].rolling(30).mean()
     return df
@@ -123,6 +169,7 @@ def candlefinder(open,close):
         return "G"
     else:
         return "R"  
+
 
 
 def bollinger_bands(df):

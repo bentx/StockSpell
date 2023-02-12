@@ -16,6 +16,17 @@ import stockFormula
 import talib
 import pandas_ta as ta
 import os.path
+
+def getSwingStock():
+    API_ENDPOINT = "https://api.tickertape.in/screener/query"
+    response =requests.post(url = API_ENDPOINT, json={"match":{"mrktCapf":{"g":1000,"l":1647964.1},"lastPrice":{"g":200,"l":89070.9},"acVol":{"g":50000,"l":176950201},"4wpctN":{"g":5,"l":20}},"sortBy":"mrktCapf","sortOrder":-1,"project":["subindustry","mrktCapf","lastPrice","acVol","4wpctN"],"offset":0,"count":200,"sids":[]}
+,headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36', "Upgrade-Insecure-Requests": "1","DNT": "1","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language": "en-US,en;q=0.5","Accept-Encoding": "gzip, deflate"})
+    response = response.json()
+    data=[]
+    for stockdetail in response["data"]["results"]:
+        data.append(stockdetail["stock"]["info"]["name"])
+    return data
+
 def getStockData(stockCode,timeList):
     data=[]
     for timeLine in timeList:
@@ -54,6 +65,8 @@ def preProcess(dataList,stockCode):
         df=stockFormula.ADX(df)
         df=stockFormula.MovingAverage(df)
         df=stockFormula.AverageVolume(df)
+        df=stockFormula.convertToMonthly(df)
+        df=stockFormula.pivotePoints(df)
         df['candle'] = df.apply(lambda row : stockFormula.candlefinder(row[1],row[4]), axis=1)
 
         #df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
@@ -68,7 +81,9 @@ def preProcess(dataList,stockCode):
         ha_df=stockFormula.ADX(ha_df)
         ha_df=stockFormula.MovingAverage(ha_df)
         ha_df=stockFormula.AverageVolume(ha_df)
-
+        ha_df=stockFormula.convertToMonthly(ha_df)
+        ha_df=stockFormula.pivotePoints(ha_df)
+        ha_df['candle'] = ha_df.apply(lambda row : stockFormula.candlefinder(row[0],row[3]), axis=1)
         #df.to_pickle("./DFState/HAdata"+stockCode+data[0]+".pkl")
         dfList.append(df.copy())
         ha_dfList.append(ha_df.copy())
