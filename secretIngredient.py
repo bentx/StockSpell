@@ -131,19 +131,19 @@ def trianglePattern(df,index,length,correction):
                 Pattern=Pattern+"L"
     return [False,"nop"]
 
-def PP(df,index):
+def PP(df,index,testdf):
     if df.at[index, 'low']>df.at[index, 'pivote'] and df.at[index, 'candle'] =="G" and df.at[index-1, 'low'] < df.at[index-1, 'pivote']:
         pattern=df.at[index, 'candle']+df.at[index-1, 'candle']+df.at[index-2, 'candle']+df.at[index-3, 'candle']
         #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),pattern)
-        return [True,pattern]
+        return [True,pattern+" "+str(df.at[index, 'pivote'])+" "+str(testdf.at[index, 'pivote'])]
     if df.at[index, 'low']>df.at[index, 'S1'] and df.at[index, 'candle'] =="G" and df.at[index-1, 'low'] < df.at[index-1, 'S1']:
         pattern=df.at[index, 'candle']+df.at[index-1, 'candle']+df.at[index-2, 'candle']+df.at[index-3, 'candle']
         #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),pattern)
-        return [True,pattern]
+        return [True,pattern+" "+str(df.at[index, 'S1'] )+" "+str(testdf.at[index, 'S1'])]
     if df.at[index, 'low']>df.at[index, 'S2'] and df.at[index, 'candle'] =="G" and df.at[index-1, 'low'] < df.at[index-1, 'S2']:
         pattern=df.at[index, 'candle']+df.at[index-1, 'candle']+df.at[index-2, 'candle']+df.at[index-3, 'candle']
         #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),pattern)
-        return [True,pattern]
+        return [True,pattern+" "+str(df.at[index, 'S2'])+" "+str(testdf.at[index, 'S2'])]
     return [False,'nop']
 
 

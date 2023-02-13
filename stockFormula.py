@@ -75,7 +75,6 @@ def convertToMonthly(df):
     df['Month_Number'] = df['DateTime'].dt.month
     # Getting year. month is common across years (as if you dont know :) )to we need to create unique index by using year and month
     df['Year'] = df['DateTime'].dt.year
-
     # Grouping based on required values
     df2 = df.groupby(['Year','Month_Number']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
     df['preMonthOpen'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'open'),axis=1)

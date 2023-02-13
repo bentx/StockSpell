@@ -25,6 +25,7 @@ def getSwingStock():
     data=[]
     for stockdetail in response["data"]["results"]:
         data.append(stockdetail["stock"]["info"]["name"])
+    print(data)
     return data
 
 def getStockData(stockCode,timeList):

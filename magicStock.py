@@ -79,7 +79,9 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 # testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
                 testResult.append(["TrianglePatternWithHA",secretIngredient.trianglePattern(ha_dfList[idx],index,120,3),index+1])
                 testResult.append(["PDCB",secretIngredient.PDCB(df,index),index+1])
-                testResult.append(["PP",secretIngredient.PP(ha_dfList[idx],index),index+1])
+                testResult.append(["PP",secretIngredient.PP(ha_dfList[idx],index,df),index+1])
+                
+
 
 
 
@@ -148,10 +150,10 @@ def WatchStockMarket():
     line_count = 0
     msg={}
     rootdf = pd.DataFrame()
+    swingStock=dataUtility.getSwingStock()
 
     
     for row in csv_reader:
-        swingStock=dataUtility.getSwingStock()
         if row[1] in swingStock:
             try:
                 print(row[1])
