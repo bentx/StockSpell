@@ -82,6 +82,24 @@ def convertToMonthly(df):
     df['preMonthLow'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'low'),axis=1)
     df['preMonthHigh'] = df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'high'),axis=1)
     return df
+
+def convertToMonthly_ha(ha_df,df):
+    IST = pytz.timezone('Asia/Kolkata')
+    ha_df['Timestamp'] = ha_df['date'].apply(unix_to_iso)
+    # Converting date to pandas datetime format
+    ha_df['DateTime'] = pd.to_datetime(ha_df['Timestamp'])
+    # Getting month number
+    ha_df['Month_Number'] = ha_df['DateTime'].dt.month
+    # Getting year. month is common across years (as if you dont know :) )to we need to create unique index by using year and month
+    ha_df['Year'] = ha_df['DateTime'].dt.year
+    # Grouping based on required values
+    df2 = df.groupby(['Year','Month_Number']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
+    df2=heikin_ashi_for_monthly(df2)
+    ha_df['preMonthOpen'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'open'),axis=1)
+    ha_df['preMonthClose'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'close'),axis=1)
+    ha_df['preMonthLow'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'low'),axis=1)
+    ha_df['preMonthHigh'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'high'),axis=1)
+    return ha_df
     
 def AverageVolume(df) :
     df['av']  = df['volume'].rolling(30).mean()
@@ -160,6 +178,26 @@ def heikin_ashi(df):
     heikin_ashi_df['volume']=df['volume']
     heikin_ashi_df['date']=df['date']
     heikin_ashi_df['candle'] = heikin_ashi_df.apply(lambda row : candlefinder(row[0],row[3]), axis=1)
+
+    return heikin_ashi_df
+
+def heikin_ashi_for_monthly(df):
+    heikin_ashi_df = pd.DataFrame(index=df.index, columns=['open', 'high', 'low', 'close'])
+    
+    heikin_ashi_df['close'] = (df['open'] + df['high'] + df['low'] + df['close']) / 4
+    
+    for i in range(len(df)):
+        if i == 0:
+            heikin_ashi_df.iat[0, 0] = df['open'].iloc[0]
+        else:
+            heikin_ashi_df.iat[i, 0] = (heikin_ashi_df.iat[i-1, 0] + heikin_ashi_df.iat[i-1, 3]) / 2
+        
+    heikin_ashi_df['high'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['high']).max(axis=1)
+    
+    heikin_ashi_df['low'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['low']).min(axis=1)
+    heikin_ashi_df['volume']=df['volume']
+    #heikin_ashi_df['date']=df['date']
+    #heikin_ashi_df['candle'] = heikin_ashi_df.apply(lambda row : candlefinder(row[0],row[3]), axis=1)
 
     return heikin_ashi_df
 

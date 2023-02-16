@@ -82,7 +82,7 @@ def preProcess(dataList,stockCode):
         ha_df=stockFormula.ADX(ha_df)
         ha_df=stockFormula.MovingAverage(ha_df)
         ha_df=stockFormula.AverageVolume(ha_df)
-        ha_df=stockFormula.convertToMonthly(ha_df)
+        ha_df=stockFormula.convertToMonthly_ha(ha_df,df)
         ha_df=stockFormula.pivotePoints(ha_df)
         ha_df['candle'] = ha_df.apply(lambda row : stockFormula.candlefinder(row[0],row[3]), axis=1)
         #df.to_pickle("./DFState/HAdata"+stockCode+data[0]+".pkl")
