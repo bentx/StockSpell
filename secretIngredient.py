@@ -146,6 +146,24 @@ def PP(df,index,testdf):
         return [True,pattern+" "+str(df.at[index, 'S2'])+" "+str(testdf.at[index, 'S2'])]
     return [False,'nop']
 
+def PPW(df,index):
+    if(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%a")=="Fri"):
+        if df.at[index, 'preWeekLow']>df.at[index, 'pivoteYear'] and df.at[index, 'candleWeek'] =="G" and df.at[index-6, 'preWeekLow'] < df.at[index-6, 'pivoteYear']:
+            pattern=df.at[index, 'candleWeek']+df.at[index-6, 'candleWeek']
+            #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),pattern)
+            return [True,pattern+" "+str(df.at[index, 'pivoteYear'])]
+        if df.at[index, 'preWeekLow']>df.at[index, 'S1Year'] and df.at[index, 'candleWeek'] =="G" and df.at[index-6, 'preWeekLow'] < df.at[index-6, 'S1Year']:
+            pattern=df.at[index, 'candleWeek']+df.at[index-6, 'candleWeek']
+            #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),pattern)
+            return [True,pattern+" "+str(df.at[index, 'S1Year'] )]
+        if df.at[index, 'preWeekLow']>df.at[index, 'S2Year'] and df.at[index, 'candleWeek'] =="G" and df.at[index-6, 'preWeekLow'] < df.at[index-6, 'S2Year']:
+            pattern=df.at[index, 'candleWeek']+df.at[index-6, 'candleWeek']
+            #print(datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%b %d %Y %I:%M%p"),pattern)
+            return [True,pattern+" "+str(df.at[index, 'S2Year'])]
+        return [False,'nop']
+    else:
+        return [False,'nop']
+
 
 def PDCB(df,index):
     date=datetime.fromtimestamp(int(df.at[index, 'date']),IST).strftime("%a")

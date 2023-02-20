@@ -50,6 +50,19 @@ def pivotePoints(data_ohlc):
     data_ohlc['S4'] = (data_ohlc['S3']) - (data_ohlc['S1'] - data_ohlc['S2'])
     return data_ohlc
 
+
+def pivotePointsYearly(data_ohlc):
+    data_ohlc['pivoteYear'] = (data_ohlc['preYearHigh'] + data_ohlc['preYearLow'] + data_ohlc['preYearClose'])/3
+    data_ohlc['R1Year'] = (2*data_ohlc['pivoteYear']) - data_ohlc['preYearLow']
+    data_ohlc['S1Year'] = (2*data_ohlc['pivoteYear']) - data_ohlc['preYearHigh']
+    data_ohlc['R2Year'] = (data_ohlc['pivoteYear']) + (data_ohlc['preYearHigh'] - data_ohlc['preYearLow'])
+    data_ohlc['S2Year'] = (data_ohlc['pivoteYear']) - (data_ohlc['preYearHigh'] - data_ohlc['preYearLow'])
+    data_ohlc['R3Year'] = (data_ohlc['R1Year']) + (data_ohlc['preYearHigh'] - data_ohlc['preYearLow'])
+    data_ohlc['S3Year'] = (data_ohlc['S1Year']) - (data_ohlc['preYearHigh'] - data_ohlc['preYearLow'])
+    data_ohlc['R4Year'] = (data_ohlc['R3Year']) + (data_ohlc['R2Year'] - data_ohlc['R1Year'])
+    data_ohlc['S4Year'] = (data_ohlc['S3Year']) - (data_ohlc['S1Year'] - data_ohlc['S2Year'])
+    return data_ohlc
+
 def unix_to_iso(unix_timestamp):
     return datetime.fromtimestamp(unix_timestamp).strftime("%d-%b-%Y")
 
@@ -64,13 +77,26 @@ def getValWithKey(year,month,df2,pos):
     except KeyError as e:
            return 0
 
+def getValWithKeyforweekly(year,week,df2,pos):
+    try:
+        key=(year,week)
+        return df2.loc[key][pos]
+    except KeyError as e:
+           return 0
 
+def getValWithKeyforYearly(year,df2,pos):
+    try:
+        return df2.loc[year-1][pos]
+    except KeyError as e:
+           return 0
 
 def convertToMonthly(df):
     IST = pytz.timezone('Asia/Kolkata')
     df['Timestamp'] = df['date'].apply(unix_to_iso)
     # Converting date to pandas datetime format
     df['DateTime'] = pd.to_datetime(df['Timestamp'])
+    #Getting Week number
+    df['Week_Number'] = df['DateTime'].dt.isocalendar().week
     # Getting month number
     df['Month_Number'] = df['DateTime'].dt.month
     # Getting year. month is common across years (as if you dont know :) )to we need to create unique index by using year and month
@@ -90,15 +116,31 @@ def convertToMonthly_ha(ha_df,df):
     ha_df['DateTime'] = pd.to_datetime(ha_df['Timestamp'])
     # Getting month number
     ha_df['Month_Number'] = ha_df['DateTime'].dt.month
+    # Getting week number
+    ha_df['Week_Number'] = ha_df['DateTime'].dt.isocalendar().week
     # Getting year. month is common across years (as if you dont know :) )to we need to create unique index by using year and month
     ha_df['Year'] = ha_df['DateTime'].dt.year
     # Grouping based on required values
-    df2 = df.groupby(['Year','Month_Number']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
-    df2=heikin_ashi_for_monthly(df2)
-    ha_df['preMonthOpen'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'open'),axis=1)
-    ha_df['preMonthClose'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'close'),axis=1)
-    ha_df['preMonthLow'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'low'),axis=1)
-    ha_df['preMonthHigh'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],df2,'high'),axis=1)
+    dfW = df.groupby(['Year','Week_Number']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
+    dfW=heikin_ashi_for_MultiKey(dfW)
+    ha_df['preWeekOpen'] = ha_df.apply(lambda x: getValWithKeyforweekly(x['Year'], x['Week_Number'],dfW,'open'),axis=1)
+    ha_df['preWeekClose'] = ha_df.apply(lambda x: getValWithKeyforweekly(x['Year'], x['Week_Number'],dfW,'close'),axis=1)
+    ha_df['preWeekLow'] = ha_df.apply(lambda x: getValWithKeyforweekly(x['Year'], x['Week_Number'],dfW,'low'),axis=1)
+    ha_df['preWeekHigh'] = ha_df.apply(lambda x: getValWithKeyforweekly(x['Year'], x['Week_Number'],dfW,'high'),axis=1)
+    dfM = df.groupby(['Year','Month_Number']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
+    dfM=heikin_ashi_for_MultiKey(dfM)
+    ha_df['preMonthOpen'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],dfM,'open'),axis=1)
+    ha_df['preMonthClose'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],dfM,'close'),axis=1)
+    ha_df['preMonthLow'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],dfM,'low'),axis=1)
+    ha_df['preMonthHigh'] = ha_df.apply(lambda x: getValWithKey(x['Year'], x['Month_Number'],dfM,'high'),axis=1)
+    dfY = df.groupby(['Year']).agg({'open':'first', 'high':'max', 'low':'min', 'close':'last','volume':'sum'})
+    dfY = dfY.tail(-1)
+    dfY=heikin_ashi_for_MultiKey(dfY)
+    ha_df['preYearOpen'] = ha_df.apply(lambda x: getValWithKeyforYearly(x['Year'],dfY,'open'),axis=1)
+    ha_df['preYearClose'] = ha_df.apply(lambda x: getValWithKeyforYearly(x['Year'],dfY,'close'),axis=1)
+    ha_df['preYearLow'] = ha_df.apply(lambda x: getValWithKeyforYearly(x['Year'],dfY,'low'),axis=1)
+    ha_df['preYearHigh'] = ha_df.apply(lambda x: getValWithKeyforYearly(x['Year'],dfY,'high'),axis=1)
+
     return ha_df
     
 def AverageVolume(df) :
@@ -181,7 +223,7 @@ def heikin_ashi(df):
 
     return heikin_ashi_df
 
-def heikin_ashi_for_monthly(df):
+def heikin_ashi_for_MultiKey(df):
     heikin_ashi_df = pd.DataFrame(index=df.index, columns=['open', 'high', 'low', 'close'])
     
     heikin_ashi_df['close'] = (df['open'] + df['high'] + df['low'] + df['close']) / 4

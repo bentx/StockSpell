@@ -69,7 +69,7 @@ def preProcess(dataList,stockCode):
         df=stockFormula.convertToMonthly(df)
         df=stockFormula.pivotePoints(df)
         df['candle'] = df.apply(lambda row : stockFormula.candlefinder(row[1],row[4]), axis=1)
-
+        
         #df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
 
         #hiken
@@ -85,6 +85,9 @@ def preProcess(dataList,stockCode):
         ha_df=stockFormula.convertToMonthly_ha(ha_df,df)
         ha_df=stockFormula.pivotePoints(ha_df)
         ha_df['candle'] = ha_df.apply(lambda row : stockFormula.candlefinder(row[0],row[3]), axis=1)
+        ha_df['candleWeek'] = ha_df.apply(lambda row : stockFormula.candlefinder(row[32],row[33]), axis=1)
+        ha_df=stockFormula.pivotePointsYearly(ha_df)
+
         #df.to_pickle("./DFState/HAdata"+stockCode+data[0]+".pkl")
         dfList.append(df.copy())
         ha_dfList.append(ha_df.copy())

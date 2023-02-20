@@ -43,7 +43,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
      output[idx]= {}   
      overall={}
      for index, row in df.iterrows():
-        if index > 200 :
+        if index > 500 :
                 
                 testResult=[]
                 if( index<df.shape[0]-11 ):
@@ -80,6 +80,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 testResult.append(["TrianglePatternWithHA",secretIngredient.trianglePattern(ha_dfList[idx],index,120,3),index+1])
                 testResult.append(["PDCB",secretIngredient.PDCB(df,index),index+1])
                 testResult.append(["PP",secretIngredient.PP(ha_dfList[idx],index,df),index+1])
+                testResult.append(["PPW",secretIngredient.PPW(ha_dfList[idx],index),index+1])
                 
 
 
@@ -159,14 +160,14 @@ def WatchStockMarket():
                 print(row[1])
                 stockCODE=row[0]
                 stock=row[1]
-                timeLine=[["1D",365]]
+                timeLine=[["1D",665]]
                 if not os.path.isfile("./DFState/data"+stockCODE+timeLine[0][0]+".pkl"):
                     dataList=dataUtility.getStockData(stockCODE,timeLine)
                     [dfList,ha_dfList]=dataUtility.preProcess(dataList,stockCODE)
 
-                    if(int(dfList[0].at[0, 'date'])<1627410600):#To remove the unwanted 2000 dates
+                    if(int(dfList[0].at[0, 'date'])<1517410600):#To remove the unwanted 2000 dates
                         print(stockCODE)
-                        dataUtility.storeInFile("./Results/Scam/scam.csv",[dfList[0].index[0].strftime("%Y-%m-%d %H:%M:%S"),stock,stockCODE])
+                        dataUtility.storeInFile("./Results/scam.csv",[datetime.fromtimestamp(int(dfList[0].at[0, 'date']),IST).strftime("%b %d %Y %I:%M%p"),stock,stockCODE])
                         continue
                     getStatistics(stockCODE,stock,dfList,ha_dfList)
 
