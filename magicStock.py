@@ -330,8 +330,44 @@ def updateResult():
             except Exception as e:
                 print("Oops!", e, "occurred.")
 
+
+def moniter_breakout():
+    print(f'+++++++++++++++++++++++++++++++++++++++++++++++++++moniter breakout')
+
+    path = "./Results/breakout/"
+    file_list = os.listdir(path) 
+    for file in file_list:
+        sdf = pd.read_csv(f'./Results/breakout/{file}',header = None)
+        print(f'Processing {file}')
+
+        for rootindex, row in sdf.iterrows():
+                if row[6]!="DROP" and row[6]!="PASS":
+                    todate = datetime.today()
+                    fromdate = datetime.strptime(row[0], '%b %d %Y %I:%M%p')
+                    tilldate = datetime.strptime(row[1], '%b %d %Y %I:%M%p')
+                    if todate > tilldate:
+                        sdf.loc[rootindex, 6]= "DROP"
+                        sdf.to_csv(f'./Results/summory/{file}', header = None,index=False)
+                    else:
+                        diff=tilldate-fromdate
+                        timeLine=[["1D",1]]#becareful
+                        dataList=dataUtility.getStockData(row[3],timeLine)
+                        df=stockFormula.convertToDF(dataList[0][1])
+                        slope,intercept =stockFormula.get_linear_equation(float(0),float(row[4]),float(diff.days),float(row[5]))
+                        currentdate = datetime.fromtimestamp(int( df.iloc[-1]['date']))
+                        current_x=currentdate-fromdate
+                        if stockFormula.check_breakout(current_x.days, df.iloc[-1]['close'], slope,intercept ):
+                            sdf.loc[rootindex, 6]= "PASS" 
+                        else:
+                            sdf.loc[rootindex, 6]= "PROGRESS"
+                        sdf.to_csv(f'./Results/breakout/{file}', header = None,index=False)
+
+            
+
+    
+
 def resetDirectory():
-    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/","./Results/overall/"]
+    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/","./Results/overall/","./Results/breakout/"]
     for dir in dirList:
         if (os.path.exists(dir)):
             print(f'removing {dir}.......')
@@ -349,3 +385,4 @@ WatchStockMarket()
 analyzeResult()
 updateResult()
 moniterResult()
+moniter_breakout()
