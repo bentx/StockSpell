@@ -10,7 +10,7 @@ import pandas_ta as ta
 import numpy as np
 import talib
 import pandas_ta as ta
-
+from scipy import stats
 
 def RSI(df):
     close = df['close']
@@ -293,3 +293,18 @@ def pf_perfomance(mtl,date):
     portfolio = mtl.loc[date:,get_top10(date)][1:2]
     return portfolio.mean(axis=1).values[0]
 
+def get_linear_equation(x1,y1,x2,y2):
+    x = np.array([x1, x2])
+    y = np.array([y1, y2])
+
+    # find the slope and intercept of the line    
+    slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+    return  slope, intercept
+
+
+def check_breakout(x,y,m,c):
+    print(x,y,m,c)
+    print(y,m*x+c)
+    if y > m*x+c:
+        return True
+    return False
