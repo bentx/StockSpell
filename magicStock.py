@@ -367,7 +367,7 @@ def moniter_breakout():
     
 
 def resetDirectory():
-    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/","./Results/overall/","./Results/breakout/"]
+    dirList=["./Results/analysis/","./Results/details/","./Results/today/","./Results/top10Analysis/","./Results/top10AnalysisStratagy/","./Results/overall/"]
     for dir in dirList:
         if (os.path.exists(dir)):
             print(f'removing {dir}.......')
