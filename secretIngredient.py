@@ -181,6 +181,8 @@ def PDCB(df,index):
         return checkPDCB(df,index-8,index)
     if date=="Fri":
         return checkPDCB(df,index-9,index)
+    else:
+        return [False,"None"]
 
 
 

@@ -53,11 +53,62 @@ def getPreLoadedData(timeLine,stockCode):
     return [dfList,ha_dfList]
 
 
+def preProcessfor4H(data):
+        sdf=stockFormula.convertToDF(data)
+        sdf['sTime'] = pd.to_datetime(sdf['date'], unit='s', utc=True)
+        ist = pytz.timezone('Asia/Kolkata')
+        sdf['sTime'] = sdf['sTime'].dt.tz_convert(ist)
+        four_hour_data = sdf.set_index('sTime').resample('4H').agg({
+                        'date':'first',
+                        'open': 'first',
+                        'high': 'max',
+                        'low': 'min',
+                        'close': 'last',
+                        'volume': 'sum'
+                    })
+        four_hour_data=four_hour_data.dropna() 
+        four_hour_data = four_hour_data.reset_index()
+        four_hour_data=stockFormula.MACD(four_hour_data)
+        four_hour_data=stockFormula.VWMA(four_hour_data)
+        four_hour_data=stockFormula.RSI(four_hour_data)
+        four_hour_data=stockFormula.VA(four_hour_data,"1WVA")
+        four_hour_data=stockFormula.bollinger_bands(four_hour_data)
+        four_hour_data=stockFormula.ADX(four_hour_data)
+        four_hour_data=stockFormula.MovingAverage(four_hour_data)
+        four_hour_data=stockFormula.AverageVolume(four_hour_data)
+        four_hour_data=stockFormula.convertToMonthly(four_hour_data)
+        four_hour_data=stockFormula.pivotePoints(four_hour_data)
+        four_hour_data['candle'] = four_hour_data.apply(lambda row : stockFormula.candlefinder(row[1],row[4]), axis=1)
+        
+        #df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
+
+        #hiken
+        ha_four_hour_data=stockFormula.heikin_ashi(four_hour_data.copy())
+        ha_four_hour_data=stockFormula.MACD(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.VWMA(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.RSI(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.VA(ha_four_hour_data,"1WVA")
+        ha_four_hour_data=stockFormula.bollinger_bands(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.ADX(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.MovingAverage(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.AverageVolume(ha_four_hour_data)
+        ha_four_hour_data=stockFormula.convertToMonthly_ha(ha_four_hour_data,four_hour_data)
+        ha_four_hour_data=stockFormula.pivotePoints(ha_four_hour_data)
+        ha_four_hour_data['candle'] = ha_four_hour_data.apply(lambda row : stockFormula.candlefinder(row[0],row[3]), axis=1)
+        ha_four_hour_data['candleWeek'] = ha_four_hour_data.apply(lambda row : stockFormula.candlefinder(row[32],row[33]), axis=1)
+        ha_four_hour_data=stockFormula.pivotePointsYearly(ha_four_hour_data)
+        return [four_hour_data,ha_four_hour_data]
+
+
 def preProcess(dataList,stockCode):
     dfList=[]
     ha_dfList=[]
     for data in dataList:
         df=stockFormula.convertToDF(data[1])
+        if data[0]=="60":
+             [wdf,wha_df]=preProcessfor4H(data[1])
+             dfList.append(wdf.copy())
+             ha_dfList.append(wha_df.copy())
         df=stockFormula.MACD(df)
         df=stockFormula.VWMA(df)
         df=stockFormula.RSI(df)
