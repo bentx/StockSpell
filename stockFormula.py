@@ -309,8 +309,6 @@ def get_linear_equation(x1,y1,x2,y2):
 
 
 def check_breakout(x,y,m,c):
-    print(x,y,m,c)
-    print(y,m*x+c)
     if y > m*x+c:
         return True
     return False
