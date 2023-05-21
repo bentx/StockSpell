@@ -384,6 +384,7 @@ def resetDirectory():
             os.mkdir(dir)
             
 def monitor_top_gainer():
+    print("monitor top gainer")
     #check top gainers part
     if(not os.path.exists("./Results/topGainers/")):
             print(f'adding {dir}.......')
@@ -463,10 +464,10 @@ def monitor_top_gainer():
     
 
 
-resetDirectory()
-WatchStockMarket()
-analyzeResult()
-updateResult()
-moniterResult()
+# resetDirectory()
+# WatchStockMarket()
+# analyzeResult()
+# updateResult()
+# moniterResult()
 moniter_breakout()
 monitor_top_gainer()
