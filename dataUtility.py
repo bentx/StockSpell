@@ -28,6 +28,17 @@ def getSwingStock():
     print(data)
     return data
 
+def get_top_gainers():
+    for i in range(0,100):
+         try:
+            API_ENDPOINT = "https://www.nseindia.com/api/live-analysis-variations?index=gainers"
+            response =requests.get(url = API_ENDPOINT, headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36', "Upgrade-Insecure-Requests": "1","DNT": "1","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language": "en-US,en;q=0.5","Accept-Encoding": "gzip, deflate"})
+            response = response.json()
+            return response
+         except Exception as e:
+                print("Oops!", e, "occurred.")
+              
+
 def getStockData(stockCode,timeList):
     data=[]
     for timeLine in timeList:
@@ -150,6 +161,17 @@ def storeInFile(fileName,data):
                                 writer_object = writer(object)
                                 writer_object.writerow(data)
                                 object.close()
+
+def checkStockExist(stockCode,file):
+    if (os.path.exists(f'./Results/topGainers/{file}')):
+      sdf = pd.read_csv(f'./Results/topGainers/{file}',header = None)
+      for rootindex, row in sdf.iterrows():
+        if row[2]==stockCode:
+             if row[3]=="process":
+                  return True
+      return False
+    return False
+           
 
 def calcWinWithPercentage(stratagy,overall,percentage):
     total=0

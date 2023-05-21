@@ -268,6 +268,12 @@ def percentageCalc(num1,num2):
     z=x/y
     return z*100
 
+def percentage_without_abs_Calc(num1,num2):
+    x=num1-num2
+    y=(num1+num2)/2
+    z=x/y
+    return z*100
+
 def findPercentage(num1,num2):
     return int(num1)/int(num2)*100
 
