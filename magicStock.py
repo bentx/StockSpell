@@ -66,7 +66,9 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                 # testResult.append(["MA200VS20",secretIngredient.movingAverageFormula(ha_dfList[idx],index,df.at[index-1, 'MA200'],df.at[index-1, 'MA20'],row['MA200'],row['MA20']),index+1])
    
                 #testResult.append(["OPG",secretIngredient.OpenPercentageGap(df.at[index-1, 'close'],df.at[index, 'open'],df.at[index, 'av']),index])
-   
+                    testResult.append(["SuperTrend",secretIngredient.checkSuperTrend(df,index),index+1])
+                    testResult.append(["SuperTrendEWM",secretIngredient.checkSuperTrendEWM(df,index),index+1])
+
                     testResult.append(["1WA1",secretIngredient.WA1Stratagy1(ha_dfList[idx],index),index+1])
                     testResult.append(["1WA2",secretIngredient.WA1Stratagy2(ha_dfList[idx],index),index+1])
                     # testResult.append(["bodyTouch200",secretIngredient.bodyTouch(ha_dfList[idx],index,'MA200'),index+1])

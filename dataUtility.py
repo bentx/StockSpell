@@ -130,6 +130,8 @@ def preProcess(dataList,stockCode):
         df=stockFormula.AverageVolume(df)
         df=stockFormula.convertToMonthly(df)
         df=stockFormula.pivotePoints(df)
+        df=stockFormula.calculate_supertrend(df)
+        df=stockFormula.calculate_supertrend_EWM(df)
         df['candle'] = df.apply(lambda row : stockFormula.candlefinder(row[1],row[4]), axis=1)
         
         #df.to_pickle("./DFState/data"+stockCode+data[0]+".pkl")
