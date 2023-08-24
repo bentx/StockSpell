@@ -13,7 +13,6 @@ import pandas_ta as ta
 from scipy import stats
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import requests
 from math import floor
 
