@@ -466,10 +466,10 @@ def monitor_top_gainer():
     
 
 
-resetDirectory()
+#resetDirectory()
 WatchStockMarket()
-analyzeResult()
-updateResult()
-moniterResult()
+#analyzeResult()
+#updateResult()
+#moniterResult()
 moniter_breakout()
 #monitor_top_gainer()

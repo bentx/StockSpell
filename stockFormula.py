@@ -13,6 +13,10 @@ import pandas_ta as ta
 from scipy import stats
 import pandas as pd
 import numpy as np
+<<<<<<< Updated upstream
+=======
+import matplotlib.pyplot as plt
+>>>>>>> Stashed changes
 import requests
 from math import floor
 
