@@ -103,3 +103,73 @@ def calculate_supertrend_EWM(df_original, period=10, multiplier=3):
     df_original["SuperTrendEWM"]=df['Strend']
 
     return df_original
+
+def rsi(df):
+    close = df['close']
+    rsi = talib.RSI(close, timeperiod=14)
+    rsi2 = talib.RSI(close, timeperiod=14)
+    df['rsi'] = rsi
+    df['rsi2'] = rsi2
+    return df 
+
+def rsi_trend(df):
+    trend_list = ["none","none","none","none","none","none","none","none","none","none","none","none","none","none"]
+    trend = "none"
+    higher_high = -1
+    lower_low =  -1
+    high = -1
+    low = -1 
+    for index, row in df[14:].iterrows():
+        if trend == "none":
+            if df['rsi'][index - 1 ] > row['rsi']:
+                higher_high = df['rsi'][index - 1 ]
+                high = df['rsi'][index - 1]
+                lower_low = row['rsi']
+                low = row['rsi']
+                trend = 'down'
+            else:
+                higher_high = row['rsi']
+                high = df['rsi']
+                lower_low = df['rsi'][index - 1]
+                low = df['rsi'][index - 1]
+                trend = 'up'
+        elif trend == "up" or trend == "upside":
+             if df['rsi'][index - 1 ] > row['rsi']:
+                if lower_low > row['rsi']:
+                    lower_low = row['rsi']
+                    higher_high = high
+                    trend = "down"
+                else:
+                    low = row['rsi']
+                    trend='upside'
+             else:
+                 if higher_high < row['rsi']:
+                     higher_high = row['rsi']
+                     lower_low = low
+                     trend='upside'
+                 else:
+                     high = row['rsi']
+                     trend='upside'
+        else:
+            if df['rsi'][index -1 ] < row ['rsi']:
+                if higher_high < row ['rsi']:
+                    higher_high = row['rsi']
+                    lower_low = low
+                    trend = "up"
+                else:
+                    high = row['rsi']
+                    trend='downside'
+            else:
+                if lower_low > row['rsi']:
+                    lower_low = row['rsi']
+                    higher_high = high
+                    trend='downside'
+                else:
+                    low = row['rsi']
+                    trend='downside'
+        trend_list.append(trend)
+    df['rsi_trend'] = trend_list
+    return df
+
+                    
+

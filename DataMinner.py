@@ -5,6 +5,8 @@ import StockIndicators
 
 
 def enrich_data(df):
+    df = StockIndicators.rsi(df)
+    df = StockIndicators.rsi_trend(df)
     df=StockIndicators.calculate_supertrend(df)
     df=StockIndicators.calculate_supertrend_EWM(df)
     df=StockIndicators.VWMA(df)

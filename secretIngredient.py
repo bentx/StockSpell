@@ -207,4 +207,9 @@ def checkSuperTrendEWM(df,currIndex):
      if df['close'][currIndex] > df['SuperTrendEWM'][currIndex] and df['close'][currIndex - 1] <= df['SuperTrendEWM'][currIndex - 1]:
                     return [True,datetime.fromtimestamp(int(df['date'][currIndex]),IST).strftime("%b %d %Y %I:%M%p")]
      return [False,"see currentdate"]
+
+def check_rsa_trend(df,currIndex):
+     if df['rsi_trend'][currIndex] == "up":
+                    return [True,datetime.fromtimestamp(int(df['date'][currIndex]),IST).strftime("%b %d %Y %I:%M%p")]
+     return [False,"see currentdate"]
     

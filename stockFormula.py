@@ -13,10 +13,6 @@ import pandas_ta as ta
 from scipy import stats
 import pandas as pd
 import numpy as np
-<<<<<<< Updated upstream
-=======
-import matplotlib.pyplot as plt
->>>>>>> Stashed changes
 import requests
 from math import floor
 
@@ -28,6 +24,65 @@ def RSI(df):
     df['rsi2'] = rsi2
     return df
 
+def rsi_trend(df):
+    trend_list = ["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]
+    trend = "none"
+    higher_high = -1
+    lower_low =  -1
+    high = -1
+    low = -1 
+    for index, row in df[15:].iterrows():
+        if trend == "none":
+            if df['rsi'][index - 1 ] > row['rsi']:
+                higher_high = df['rsi'][index - 1 ]
+                high = df['rsi'][index - 1]
+                lower_low = row['rsi']
+                low = row['rsi']
+                trend = 'fdown'
+            else:
+                higher_high = row['rsi']
+                high = row['rsi']
+                lower_low = df['rsi'][index - 1]
+                low = df['rsi'][index - 1]
+                trend = 'fup'
+        elif trend == "up" or trend == "upside" or trend == "fup" or trend == "lupside" or trend == "uhupside" or trend == "uupside":
+             if df['rsi'][index - 1 ] > row['rsi']:
+                if lower_low > row['rsi']:
+                    lower_low = row['rsi']
+                    higher_high = high
+                    trend = "down"
+                else:
+                    low = row['rsi']
+                    trend='lupside'
+             else:
+                 if higher_high < row['rsi']:
+                     higher_high = row['rsi']
+                     lower_low = low
+                     trend='uhupside'
+                 else:
+                     high = row['rsi']
+                     trend='uupside'
+        else:
+            if df['rsi'][index -1 ] < row ['rsi']:
+                if higher_high < row ['rsi']:
+                    higher_high = row['rsi']
+                    lower_low = low
+                    trend = "up"
+                else:
+                    high = row['rsi']
+                    trend='hdownside'
+            else:
+                if lower_low > row['rsi']:
+                    lower_low = row['rsi']
+                    higher_high = high
+                    trend='ldownside'
+                else:
+                    low = row['rsi']
+                    trend='lldownside'
+        trend_list.append(trend)
+
+    df['rsi_trend'] = trend_list
+    return df
      
 def RSIMovingAverage(list,index,divident):
     data = list[:index+1]
