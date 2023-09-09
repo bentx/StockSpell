@@ -78,6 +78,7 @@ def getStatistics(stockCODE,stock,dfList,ha_dfList):
                     # testResult.append(["TopGainer1",secretIngredient.TopGainer(df,index,1),index+1])
                     # testResult.append(["TopGainer2",secretIngredient.TopGainer(df,index,2),index+1])
                     testResult.append(["RSAADX",secretIngredient.RSAADX(df,index),index+1])
+                    testResult.append(["RsaTrend",secretIngredient.check_rsa_trend(df,index),index+1])
                     # #testResult.append(["linebreak",secretIngredient.findTrend(df,index,120,3),index+1])
                     # testResult.append(["TrianglePattern",secretIngredient.trianglePattern(df,index,120,3),index+1])
                     testResult.append(["TrianglePatternWithHA",secretIngredient.trianglePattern(ha_dfList[idx],index,120,3),index+1])
