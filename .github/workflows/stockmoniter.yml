@@ -1,49 +1,49 @@
-name: StockMonitor
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '30 12 * * 1-5'
+# name: StockMonitor
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '30 12 * * 1-5'
 
-jobs:
-  StockMonitor:
-    runs-on: ubuntu-latest
-    env:
-      CI_COMMIT_MESSAGE: CI Run
-      CI_COMMIT_AUTHOR: CI
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v3 # checkout the repository content to github runner.
+# jobs:
+#   StockMonitor:
+#     runs-on: ubuntu-latest
+#     env:
+#       CI_COMMIT_MESSAGE: CI Run
+#       CI_COMMIT_AUTHOR: CI
+#     steps:
+#       - name: checkout repo
+#         uses: actions/checkout@v3 # checkout the repository content to github runner.
 
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9 #install the python needed
-          cache: 'pip'
+#       - name: setup python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: 3.9 #install the python needed
+#           cache: 'pip'
 
-      - name: setup TALIB
-        run: |
-          echo "list file"
-          ls -lrt
-          wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
-          tar xvfz ta-lib-0.4.0-src.tar.gz
-          cd ta-lib
-          ./configure  --prefix="/usr"
-          make
-          sudo make install
-          cd ../
-          rm -rf ta-lib
-          rm -rf ta-lib-0.4.0-src.tar.gz
+#       - name: setup TALIB
+#         run: |
+#           echo "list file"
+#           ls -lrt
+#           wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+#           tar xvfz ta-lib-0.4.0-src.tar.gz
+#           cd ta-lib
+#           ./configure  --prefix="/usr"
+#           make
+#           sudo make install
+#           cd ../
+#           rm -rf ta-lib
+#           rm -rf ta-lib-0.4.0-src.tar.gz
 
-      - name: Install Python dependencies
-        uses: py-actions/py-dependency-install@v4
-        with:
-          path: 'requirements.txt'
+#       - name: Install Python dependencies
+#         uses: py-actions/py-dependency-install@v4
+#         with:
+#           path: 'requirements.txt'
 
-      - name: Run python script # run the run.py to get the latest data
-        run: |
-          python magicStock.py
+#       - name: Run python script # run the run.py to get the latest data
+#         run: |
+#           python magicStock.py
 
-      - name: Commit Result
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Automated Change
+#       - name: Commit Result
+#         uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: Automated Change
